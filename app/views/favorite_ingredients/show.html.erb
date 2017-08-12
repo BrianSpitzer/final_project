@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Favorite Ingredient #<%= @favorite_ingredient.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @favorite_ingredient.user_id %></dd>
+
+      <dt>Ingredient</dt>
+      <dd><%= @favorite_ingredient.ingredient_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/favorite_ingredients" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/favorite_ingredients/<%= @favorite_ingredient.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_favorite_ingredient/<%= @favorite_ingredient.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

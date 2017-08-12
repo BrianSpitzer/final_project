@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>
+    Ingredient techniques
+    <a href="/ingredient_techniques/new" class="btn btn-lg btn-success">New Ingredient technique</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Ingredient</th>
+        <th>Technique</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @ingredient_techniques.each do |ingredient_technique| %>
+      <tr>
+        <td><%= ingredient_technique.ingredient_id %></td>
+        <td><%= ingredient_technique.technique_id %></td>
+        <td>
+          <a href="/ingredient_techniques/<%= ingredient_technique.id %>" class="btn btn-primary">Show</a>
+          <a href="/ingredient_techniques/<%= ingredient_technique.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_ingredient_technique/<%= ingredient_technique.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

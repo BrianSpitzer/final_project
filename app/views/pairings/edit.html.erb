@@ -1,0 +1,63 @@
+<!-- Validation failure messages -->
+<% if @pairing.errors.any? %>
+  <% @pairing.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Pairing #<%= @pairing.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_pairing/<%= @pairing.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for first_ingredient_id -->
+      <div class="form-group">
+        <label for="first_ingredient_id" class="control-label">
+          First ingredient
+        </label>
+
+        <input type="text" id="first_ingredient_id" name="first_ingredient_id" placeholder="First ingredient" class="form-control" value="<%= @pairing.first_ingredient_id %>">
+      </div>
+
+      <!-- Label and input for second_ingredient_id -->
+      <div class="form-group">
+        <label for="second_ingredient_id" class="control-label">
+          Second ingredient
+        </label>
+
+        <input type="text" id="second_ingredient_id" name="second_ingredient_id" placeholder="Second ingredient" class="form-control" value="<%= @pairing.second_ingredient_id %>">
+      </div>
+
+      <!-- Label and input for pairing_strength -->
+      <div class="form-group">
+        <label for="pairing_strength" class="control-label">
+          Pairing strength
+        </label>
+
+        <input type="text" id="pairing_strength" name="pairing_strength" placeholder="Pairing strength" class="form-control" value="<%= @pairing.pairing_strength %>">
+      </div>
+
+      <!-- Label and input for inverse -->
+      <div class="checkbox">
+        <label for="inverse">
+          <input type="checkbox" id="inverse" name="inverse" value="1" <%= "checked" if @pairing.inverse %>>
+          Inverse
+        </label>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Pairing
+      </button>
+      or
+      <a href="/pairings/<%= @pairing.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

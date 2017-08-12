@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Pairings
+    <a href="/pairings/new" class="btn btn-lg btn-success">New Pairing</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>First ingredient</th>
+        <th>Second ingredient</th>
+        <th>Pairing strength</th>
+        <th>Inverse</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @pairings.each do |pairing| %>
+      <tr>
+        <td><%= pairing.first_ingredient_id %></td>
+        <td><%= pairing.second_ingredient_id %></td>
+        <td><%= pairing.pairing_strength %></td>
+        <td><%= pairing.inverse %></td>
+        <td>
+          <a href="/pairings/<%= pairing.id %>" class="btn btn-primary">Show</a>
+          <a href="/pairings/<%= pairing.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_pairing/<%= pairing.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

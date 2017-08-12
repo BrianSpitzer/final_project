@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>
+    Techniques
+    <a href="/techniques/new" class="btn btn-lg btn-success">New Technique</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @techniques.each do |technique| %>
+      <tr>
+        <td><%= technique.name %></td>
+        <td>
+          <a href="/techniques/<%= technique.id %>" class="btn btn-primary">Show</a>
+          <a href="/techniques/<%= technique.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_technique/<%= technique.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

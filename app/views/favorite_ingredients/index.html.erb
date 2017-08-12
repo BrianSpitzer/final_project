@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>
+    Favorite ingredients
+    <a href="/favorite_ingredients/new" class="btn btn-lg btn-success">New Favorite ingredient</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>User</th>
+        <th>Ingredient</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @favorite_ingredients.each do |favorite_ingredient| %>
+      <tr>
+        <td><%= favorite_ingredient.user_id %></td>
+        <td><%= favorite_ingredient.ingredient_id %></td>
+        <td>
+          <a href="/favorite_ingredients/<%= favorite_ingredient.id %>" class="btn btn-primary">Show</a>
+          <a href="/favorite_ingredients/<%= favorite_ingredient.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_favorite_ingredient/<%= favorite_ingredient.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

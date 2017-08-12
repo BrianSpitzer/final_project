@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @favorite_pairing.errors.any? %>
+  <% @favorite_pairing.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Favorite Pairing</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_favorite_pairing" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @favorite_pairing.user_id %>">
+      </div>
+
+      <!-- Label and input for pairing_id -->
+      <div class="form-group">
+        <label for="pairing_id" class="control-label">
+          Pairing
+        </label>
+
+        <input type="text" id="pairing_id" name="pairing_id" placeholder="Pairing" class="form-control" value="<%= @favorite_pairing.pairing_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Favorite Pairing
+      </button>
+      or
+      <a href="/favorite_pairings">Cancel</a>
+    </form>
+  </div>
+</div>

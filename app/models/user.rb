@@ -1,0 +1,45 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  username               :string
+#  avatar                 :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+         
+         
+  # Direct assocations
+  has_many :favorite_ingredients, :dependent => :destroy
+  has_many :favorite_pairings, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
+  has_many :recipes, :dependent => :nullify
+  has_many :favorite_recipes, :dependent => :destroy
+  
+  # Indirect associations
+  has_many :ingredients, :through => :favorite_ingredients, :source => :ingredient
+  has_many :pairings, :through => :favorite_pairings, :source => :pairing
+  
+end
