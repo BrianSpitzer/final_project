@@ -11,6 +11,8 @@
 #
 
 class Recipe < ApplicationRecord
+  # Validations
+  validates :title, :presence => true, :uniqueness => true
   
   # Direct associations
   belongs_to :author, :class_name => "User", :foreign_key => "user_id"

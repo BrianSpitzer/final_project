@@ -9,6 +9,8 @@
 #
 
 class Taste < ApplicationRecord
+  # Validations
+  validates :name, :presence => true, :uniqueness => true, format: { with: /\A[a-zA-Z ]+\z/, message: "only allows letters" }
   
   # Direct associations
   has_many :ingredient_tastes, :dependent => :destroy

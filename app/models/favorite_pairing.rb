@@ -10,6 +10,8 @@
 #
 
 class FavoritePairing < ApplicationRecord
+  # Validations
+  validates :user_id, :uniqueness => { :scope => :pairing_id }
   
   # Direct associations
   belongs_to :pairing

@@ -12,6 +12,9 @@
 #
 
 class Pairing < ApplicationRecord
+  # Validations
+  validates :first_ingredient_id, :uniqueness => { :scope => :second_ingredient_id }
+  validates :pairing_strength, inclusion: { in: %w(good better best), message: "%{value} is not a valid strength" }
 
   # Direct associations
   belongs_to :first_ingredient, :class_name => "Ingredient"

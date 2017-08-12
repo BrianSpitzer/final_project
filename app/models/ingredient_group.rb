@@ -10,6 +10,7 @@
 #
 
 class IngredientGroup < ApplicationRecord
+  # Validations
   
   # Direct associations
   belongs_to :ingredient

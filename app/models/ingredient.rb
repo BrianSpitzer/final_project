@@ -16,7 +16,7 @@
 class Ingredient < ApplicationRecord
 
   # Validations
-  validates :name, :presence => true, :uniqueness => true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+  validates :name, :presence => true, :uniqueness => true, format: { with: /\A[a-zA-Z ]+\z/, message: "only allows letters" }
   validates :weight, inclusion: { in: %w(light light-medium medium medium-heavy heavy), message: "%{value} is not a valid weight" }
   validates :volume, inclusion: { in: %w(quiet quiet-moderate moderate moderate-loud loud quiet-loud), message: "%{value} is not a valid volume" }
   validates :season, inclusion: { in: %w(winter winter-spring spring spring-summer summer summer-autumn autumn autumn-winter year-round), 

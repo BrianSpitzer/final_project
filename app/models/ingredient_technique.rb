@@ -10,6 +10,8 @@
 #
 
 class IngredientTechnique < ApplicationRecord
+  # Validations
+  validates :ingredient_id, :uniqueness => { :scope => :technique_id }
     
   # Direct associations
   belongs_to :ingredient

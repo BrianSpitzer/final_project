@@ -11,6 +11,9 @@
 #
 
 class RecipeMethod < ApplicationRecord
+  # Validations
+  validates :sequence, :presence => true, :uniqueness => true, :numericality => true
+  validates :description, :presence => true
   
   # Direct associations
   belongs_to :recipe

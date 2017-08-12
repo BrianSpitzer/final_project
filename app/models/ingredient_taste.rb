@@ -10,6 +10,8 @@
 #
 
 class IngredientTaste < ApplicationRecord
+  # Validations
+  validates :ingredient_id, :uniqueness => { :scope => :taste_id }
   
   # Direct associations
   belongs_to :ingredient

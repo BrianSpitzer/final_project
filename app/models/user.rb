@@ -30,6 +30,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
+  # Validations
          
   # Direct assocations
   has_many :favorite_ingredients, :dependent => :destroy

@@ -11,6 +11,7 @@
 #
 
 class RecipeIngredient < ApplicationRecord
+  # Validations
   
   # Direct associations
   belongs_to :ingredient

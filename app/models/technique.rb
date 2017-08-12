@@ -9,8 +9,10 @@
 #
 
 class Technique < ApplicationRecord
+  # Validations
+  validates :name, :presence => true, :uniqueness => true, format: { with: /\A[a-zA-Z ]+\z/, message: "only allows letters" }
     
-# Direct associations
+  # Direct associations
   has_many :ingredient_techniques, :dependent => :destroy
     
   # Indirect associations

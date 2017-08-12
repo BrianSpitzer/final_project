@@ -11,6 +11,8 @@
 #
 
 class FavoriteRecipe < ApplicationRecord
+  # Validations
+  validates :user_id, :uniqueness => { :scope => :recipe_id }
   
   # Direct associations
   belongs_to :user

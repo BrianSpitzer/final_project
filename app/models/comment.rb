@@ -12,6 +12,8 @@
 #
 
 class Comment < ApplicationRecord
+ 
+  # Validations
   
   # Direct associations
   belongs_to :ingredient, :required => false
