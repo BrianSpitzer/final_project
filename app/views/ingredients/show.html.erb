@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>Ingredient #<%= @ingredient.id %></h3>
+  <h3><%= @ingredient.name.camelize %></h3>
 </div>
 
 <div class="row">
@@ -27,13 +27,13 @@
 
     <div class="btn-group btn-group-justified">
       <a href="/ingredients" class="btn btn-primary">
-        Back
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true">
       </a>
       <a href="/ingredients/<%= @ingredient.id %>/edit" class="btn btn-warning">
-        Edit
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true">
       </a>
       <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
+        <span class="glyphicon glyphicon-remove" aria-hidden="true">
       </a>
     </div>
   </div>

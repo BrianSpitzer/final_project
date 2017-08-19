@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Ingredient #<%= @ingredient.id %></h3>
+  <h3>Edit <%= @ingredient.name.camelize %></h3>
 </div>
 
 <div class="row">
@@ -17,63 +17,128 @@
     <form action="/update_ingredient/<%= @ingredient.id %>" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
+    
       <!-- Label and input for name -->
-      <div class="form-group">
-        <label for="name" class="control-label">
-          Name
-        </label>
-
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @ingredient.name %>">
+      <div class = "row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="name" class="control-label">
+              Name
+            </label>
+          </div>
+          <div class="col-md-10">
+            <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @ingredient.name %>">
+          </div>
+        </div>
       </div>
 
       <!-- Label and input for weight -->
-      <div class="form-group">
-        <label for="weight" class="control-label">
-          Weight
-        </label>
-
-        <input type="text" id="weight" name="weight" placeholder="Weight" class="form-control" value="<%= @ingredient.weight %>">
+      <div class = "row">
+        <div class="form-group">
+          <div class = "col-md-2">  
+            <label for="weight" class="control-label">
+              Weight
+            </label>
+          </div>
+          <div class = "col-md-10">
+            <%= select_tag(:weight, options_for_select([
+              ['light','light'], 
+              ['light-medium','light-medium'],
+              ['medium','medium'],
+              ['medium-heavy','medium-heavy'],
+              ['heavy','heavy'],
+              ], @ingredient.weight), :class => "form-control", :include_blank => true) %>        
+          </div>  
+        </div>
       </div>
-
+      
       <!-- Label and input for volume -->
-      <div class="form-group">
-        <label for="volume" class="control-label">
-          Volume
-        </label>
-
-        <input type="text" id="volume" name="volume" placeholder="Volume" class="form-control" value="<%= @ingredient.volume %>">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="volume" class="control-label">
+              Volume
+            </label>
+          </div>
+          
+          <div class="col-md-10">
+            <%= select_tag(:volume, options_for_select([
+              ['quiet','quiet'], 
+              ['quiet-moderate','quiet-moderate'],
+              ['moderate','moderate'],
+              ['moderate-loud','moderate-loud'],
+              ['loud','loud'],
+              ['quiet-loud','quiet-loud'],
+              ], @ingredient.volume), :class => "form-control", :include_blank => true) %>
+          </div>
+        </div>
       </div>
-
+      
       <!-- Label and input for season -->
-      <div class="form-group">
-        <label for="season" class="control-label">
-          Season
-        </label>
-
-        <input type="text" id="season" name="season" placeholder="Season" class="form-control" value="<%= @ingredient.season %>">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="season" class="control-label">
+              Season
+            </label>
+          </div>
+          
+          <div class="col-md-10">
+             <%= select_tag(:season, options_for_select([
+              ['winter','winter'], 
+              ['winter-spring','winter-spring'],
+              ['spring','spring'],
+              ['spring-summer','spring-summer'],
+              ['summer','summer'],
+              ['summer-autumn','summer-autumn'],
+              ['autumn','autumn'],
+              ['autumn-winter','autumn-winter'],
+              ['year round','year-round']
+              ], @ingredient.season), :class => "form-control", :include_blank => true) %>    
+          </div>
+        </div>
       </div>
-
+      
       <!-- Label and input for function -->
-      <div class="form-group">
-        <label for="function" class="control-label">
-          Function
-        </label>
-
-        <input type="text" id="function" name="function" placeholder="Function" class="form-control" value="<%= @ingredient.function %>">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="function" class="control-label">
+              Function
+            </label>
+          </div>
+          
+          <div class="col-md-10">
+             <%= select_tag(:function, options_for_select([
+              ['cooling','cooling'], 
+              ['warming','warming'],
+              ['heating','heating']
+              ], @ingredient.function), :class => "form-control", :include_blank => true) %>   
+          </div>
+        </div>
       </div>
-
+      
       <!-- Label and input for form -->
-      <div class="form-group">
-        <label for="form" class="control-label">
-          Form
-        </label>
-
-        <input type="text" id="form" name="form" placeholder="Form" class="form-control" value="<%= @ingredient.form %>">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="form" class="control-label">
+              Form
+            </label>
+          </div>
+          
+          <div class="col-md-10">
+             <%= select_tag(:form, options_for_select([
+              ['dry','dry'], 
+              ['wet','wet'],
+              ['each','each']
+              ], @ingredient.form), :class => "form-control", :include_blank => true) %>   
+          </div>
+        </div>
       </div>
 
       <button class="btn btn-warning">
-        Update Ingredient
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
       </button>
       or
       <a href="/ingredients/<%= @ingredient.id %>">Cancel</a>

@@ -17,12 +17,14 @@ class Ingredient < ApplicationRecord
 
   # Validations
   validates :name, :presence => true, :uniqueness => true, format: { with: /\A[a-zA-Z ]+\z/, message: "only allows letters" }
-  validates :weight, inclusion: { in: %w(light light-medium medium medium-heavy heavy), message: "%{value} is not a valid weight" }
-  validates :volume, inclusion: { in: %w(quiet quiet-moderate moderate moderate-loud loud quiet-loud), message: "%{value} is not a valid volume" }
+  validates :weight, inclusion: { in: %w(light light-medium medium medium-heavy heavy), message: "%{value} is not a valid weight" }, 
+    allow_blank: true
+  validates :volume, inclusion: { in: %w(quiet quiet-moderate moderate moderate-loud loud quiet-loud), message: "%{value} is not a valid volume" }, 
+    allow_blank: true
   validates :season, inclusion: { in: %w(winter winter-spring spring spring-summer summer summer-autumn autumn autumn-winter year-round), 
-    message: "%{value} is not a valid season" }
-  validates :function, inclusion: { in: %w(cooling warming heating), message: "%{value} is not a valid function" }
-  validates :form, inclusion: { in: %w(wet dry each), message: "%{value} is not a valid form" }
+    message: "%{value} is not a valid season" }, allow_blank: true
+  validates :function, inclusion: { in: %w(cooling warming heating), message: "%{value} is not a valid function" }, allow_blank: true
+  validates :form, inclusion: { in: %w(wet dry each), message: "%{value} is not a valid form" }, allow_blank: true
     
   # Direct associations 
   has_many :ingredient_techniques, :dependent => :destroy
