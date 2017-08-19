@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3><%= @ingredient.name.camelize %></h3>
+  <h3><%= @ingredient.name.titlecase %></h3>
 </div>
 
 <div class="row">
@@ -22,6 +22,12 @@
 
       <dt>Form</dt>
       <dd><%= @ingredient.form %></dd>
+      
+      <dt>Taste</dt>
+      <dd><%= @ingredient.tastes.map(&:name).join(", ") %></dd>
+      
+      <dt>Techniques</dt>
+      <dd><%= @ingredient.techniques.map(&:name).join(", ") %></dd>
 
     </dl>
 
@@ -36,5 +42,5 @@
         <span class="glyphicon glyphicon-remove" aria-hidden="true">
       </a>
     </div>
-  </div>
+   </div>
 </div>

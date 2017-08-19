@@ -22,9 +22,11 @@
       <div class="form-group">
         <label for="ingredient_id" class="control-label">
           Ingredient
-        </label>
-
-        <input type="text" id="ingredient_id" name="ingredient_id" placeholder="Ingredient" class="form-control" value="<%= @ingredient_taste.ingredient_id %>">
+        </label>        
+        
+        <%= select_tag(:ingredient_id, 
+              options_from_collection_for_select(Ingredient.all, :id, :name, @ingredient_taste.ingredient_id), 
+              :class => "form-control" )%>
       </div>
 
       <!-- Label and input for taste_id -->
@@ -32,8 +34,10 @@
         <label for="taste_id" class="control-label">
           Taste
         </label>
-
-        <input type="text" id="taste_id" name="taste_id" placeholder="Taste" class="form-control" value="<%= @ingredient_taste.taste_id %>">
+        
+        <%= select_tag(:taste_id, 
+              options_from_collection_for_select(Taste.all, :id, :name, @ingredient_taste.taste_id), 
+              :class => "form-control" )%>
       </div>
 
       <button class="btn btn-success">

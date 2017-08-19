@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit <%= @ingredient.name.camelize %></h3>
+  <h3>Edit <%= @ingredient.name.titlecase %></h3>
 </div>
 
 <div class="row">
@@ -144,4 +144,95 @@
       <a href="/ingredients/<%= @ingredient.id %>">Cancel</a>
     </form>
   </div>
+</div>
+
+<div>
+  <div class="row">
+    <h3> Tastes </h3>
+      <ul>
+        <% @ingredient.tastes.each do |taste| %>
+          <li> <%= taste.name %> </li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <h4> Add a new taste for <%= @ingredient.name %></h4>
+    <div class="row">
+      <div class="col-md-12">
+        <form action="/create_ingredient_taste" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+    
+          <!-- Hidden input for ingredient_id -->
+          <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
+    
+          <!-- Label and input for taste_id -->
+          <div class="row">
+            <div class="form-group">
+              <div class="col-md-2">
+                <label for="taste_id" class="control-label">
+                  Taste
+                </label>
+              </div>
+              
+              <div class="col-md-10">
+                <%= select_tag(:taste_id, options_from_collection_for_select(Taste.all, :id, :name, @ingredient_taste.taste_id), :class => "form-control") %>
+              </div>
+              <a href="/taste/new">Add a new taste</a>
+            </div>
+          </div>
+          <button class="btn btn-success">
+            Create Taste
+          </button>
+          or
+          <a href="/ingredients">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>  
+
+<div>
+  <div class="row">
+    <h3> Techniques </h3>
+      <ul>
+        <% @ingredient.techniques.each do |technique| %>
+          <li> <%= technique.name %> </li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <h4> Add a new technique for <%= @ingredient.name %></h4>
+    <div class="row">
+      <div class="col-md-12">
+        <form action="/create_ingredient_technique" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+    
+          <!-- Hidden input for ingredient_id -->
+          <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
+    
+          <!-- Label and input for technique_id -->
+          <div class="row">
+            <div class="form-group">
+              <div class="col-md-2">
+                <label for="technique_id" class="control-label">
+                  Technique
+                </label>
+              </div>
+              
+              <div class="col-md-10">    
+                <%= select_tag(:technique_id, options_from_collection_for_select(Technique.all, :id, :name, @ingredient_technique.technique_id), :class => "form-control") %>
+              </div>
+              <a href="/technique/new">Add a new technique</a>
+            </div>
+          </div>
+          <button class="btn btn-success">
+            Create Taste
+          </button>
+          or
+          <a href="/ingredients">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>  
 </div>

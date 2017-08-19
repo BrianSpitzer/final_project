@@ -38,7 +38,9 @@ class IngredientsController < ApplicationController
 
   def edit
     @ingredient = Ingredient.find(params[:id])
-
+    @ingredient_taste = IngredientTaste.new
+    @ingredient_technique = IngredientTechnique.new
+    
     render("ingredients/edit.html.erb")
   end
 

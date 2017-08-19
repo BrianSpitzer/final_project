@@ -24,7 +24,9 @@
           Ingredient
         </label>
 
-        <input type="text" id="ingredient_id" name="ingredient_id" placeholder="Ingredient" class="form-control" value="<%= @ingredient_technique.ingredient_id %>">
+        <%= select_tag(:ingredient_id, 
+              options_from_collection_for_select(Ingredient.all, :id, :name, @ingredient_technique.ingredient_id), 
+              :class => "form-control" )%>
       </div>
 
       <!-- Label and input for technique_id -->
@@ -33,7 +35,9 @@
           Technique
         </label>
 
-        <input type="text" id="technique_id" name="technique_id" placeholder="Technique" class="form-control" value="<%= @ingredient_technique.technique_id %>">
+        <%= select_tag(:technique_id, 
+              options_from_collection_for_select(Technique.all, :id, :name, @ingredient_technique.technique_id), 
+              :class => "form-control" )%>
       </div>
 
       <button class="btn btn-success">
