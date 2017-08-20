@@ -146,7 +146,7 @@ namespace :slurp do
         add = 1
       end
       
-      if add = 1
+      if add == 1
         p=Pairing.new
         p.first_ingredient_id = first_id
         p.second_ingredient_id = second_id

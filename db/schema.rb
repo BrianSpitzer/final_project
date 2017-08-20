@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812112813) do
+ActiveRecord::Schema.define(version: 20170820215915) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -95,25 +95,11 @@ ActiveRecord::Schema.define(version: 20170812112813) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ingredients", force: :cascade do |t|
-    t.string "name"
-    t.string "weight"
-    t.string "volume"
-    t.string "season"
-    t.string "function"
-    t.string "form"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "ingredients" because of following StandardError
+#   Unknown type 'fixnum' for column 'user_id'
 
-  create_table "pairings", force: :cascade do |t|
-    t.integer "first_ingredient_id"
-    t.integer "second_ingredient_id"
-    t.string "pairing_strength"
-    t.boolean "inverse"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "pairings" because of following StandardError
+#   Unknown type 'fixnum' for column 'user_id'
 
   create_table "recipe_ingredients", force: :cascade do |t|
     t.integer "recipe_id"
