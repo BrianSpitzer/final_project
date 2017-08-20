@@ -71,3 +71,4 @@ gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
 gem 'devise', github: 'plataformatec/devise'
 gem 'jquery-rails'
+gem 'unirest'

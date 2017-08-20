@@ -123,18 +123,30 @@ namespace :slurp do
         end
       end
 
-      if first_id < second_id
+      puts "Before sort #{first_id},#{second_id}"
+
+      if first_id > second_id
         third_id = first_id
         first_id = second_id
         second_id = third_id
       end
 
+      puts "After sort #{first_id},#{second_id}"
+  
+      add = 0
+      
       if Pairing.find_by(:first_ingredient_id => first_id).present?
         first_set = Pairing.where(:first_ingredient_id => first_id)
         if first_set.find_by(:second_ingredient_id => second_id).present?
           puts "Pairing #{first}, #{second} already exists"
+        else
+          add = 1
         end
       else
+        add = 1
+      end
+      
+      if add = 1
         p=Pairing.new
         p.first_ingredient_id = first_id
         p.second_ingredient_id = second_id

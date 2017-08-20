@@ -1,46 +1,164 @@
 <div class="page-header">
-  <h3><%= @ingredient.name.titlecase %></h3>
+  <h2><%= @ingredient.name.titlecase %></h2>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">Ingredient information</h4>
+      </div>
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+
+          <dt>Weight</dt>
+          <dd><%= @ingredient.weight %></dd>
+    
+          <dt>Volume</dt>
+          <dd><%= @ingredient.volume %></dd>
+    
+          <dt>Season</dt>
+          <dd><%= @ingredient.season %></dd>
+    
+          <dt>Function</dt>
+          <dd><%= @ingredient.function %></dd>
+    
+          <dt>Form</dt>
+          <dd><%= @ingredient.form %></dd>
+          
+          <dt>Taste</dt>
+          <dd><%= @ingredient.tastes.map(&:name).join(", ") %></dd>
+          
+          <dt>Techniques</dt>
+          <dd><%= @ingredient.techniques.map(&:name).join(", ") %></dd>
+    
+        </dl>
+      </div>
+      <div class="btn-group btn-group-justified">
+        <a href="/ingredients" class="btn btn-primary">
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true">
+        </a>
+        <a href="/ingredients/<%= @ingredient.id %>/edit" class="btn btn-warning">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+        </a>
+        <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-danger" rel="nofollow">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true">
+        </a>
+      </div>
+    </div>
+   </div>
+  <div class="col-md-6 mb-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">Nutritional Information</h4>
+      </div>
+      <div class="panel-body">
+        <% if @ndbno == "not on file" %>
+          <p>No nutritional information is available.</p>
+        <% else %>
+          <dl class="dl-horizontal">
+            <dt>Serving size</dt>
+            <dd><%= @serving_description %>, (<%= @serving_grams %> g)</dd>
+      
+            <dt>Calories:</dt>   
+            <dd><%= @calories %></dd>
+      
+            <dt>Fat:</dt> 
+            <dd><%= @fat %> g</dd>
+      
+            <dt>Carbohydrates:</dt>
+            <dd><%= @carbs %> g</dd>
+      
+            <dt>Sugars:</dt>
+            <dd><%= @sugars %></dd>
+          </dl>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @ingredient.name %></dd>
-
-      <dt>Weight</dt>
-      <dd><%= @ingredient.weight %></dd>
-
-      <dt>Volume</dt>
-      <dd><%= @ingredient.volume %></dd>
-
-      <dt>Season</dt>
-      <dd><%= @ingredient.season %></dd>
-
-      <dt>Function</dt>
-      <dd><%= @ingredient.function %></dd>
-
-      <dt>Form</dt>
-      <dd><%= @ingredient.form %></dd>
-      
-      <dt>Taste</dt>
-      <dd><%= @ingredient.tastes.map(&:name).join(", ") %></dd>
-      
-      <dt>Techniques</dt>
-      <dd><%= @ingredient.techniques.map(&:name).join(", ") %></dd>
-
-    </dl>
-
-    <div class="btn-group btn-group-justified">
-      <a href="/ingredients" class="btn btn-primary">
-        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true">
-      </a>
-      <a href="/ingredients/<%= @ingredient.id %>/edit" class="btn btn-warning">
-        <span class="glyphicon glyphicon-pencil" aria-hidden="true">
-      </a>
-      <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-danger" rel="nofollow">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true">
-      </a>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Pairings
+        </h3>
+      </div>
+      <div class="panel-body">
+        <% if @ingredient.first_pairings.present? || @ingredient.second_pairings.present? %>
+          <table class="table">
+            <tr>
+              <th>Ingredient</th>
+              <th>Pairing Strength</th>
+              <th>Likes</th>
+              <th>Like this</th>
+            </tr>
+            <% if @ingredient.first_pairings.present? %> 
+              <% @ingredient.first_pairings.each do |pairing| %>
+                <tr>
+                  <td><a href="/ingredients/<%=pairing.second_ingredient_id%>"><%= Ingredient.find(pairing.second_ingredient_id).name %></a></td>
+                  <td><%= pairing.pairing_strength %></td>
+                  <td>Coming soon</td>
+                  <td>Coming soon</td>
+                </tr>
+              <% end %>  
+            <% end %>
+            <% if @ingredient.second_pairings.present? %>
+              <% @ingredient.second_pairings.each do |pairing| %>
+                <tr>
+                  <td><a href="/ingredients/<%=pairing.first_ingredient_id%>"><%= Ingredient.find(pairing.first_ingredient_id).name %></a></td>
+                  <td><%= pairing.pairing_strength %></td>
+                  <td>Coming soon</td>
+                  <td>Coming soon</td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        <% else %>
+          There aren't any recommended pairings yet.
+        <% end %>
+      </div>
     </div>
-   </div>
+  </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <h3 class="panel-title">Recipes</h3>
+      </div>
+      <div class="panel-body">
+        <% if @recipe_list.count == 0 %>
+          There aren't any recipe suggestions.
+        <% else %>
+          <table class="table">
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Publisher</th>
+            </tr>
+            <% @recipe_list.each do |recipe| %>
+              <tr>
+                <td><img src=<%=recipe["image_url"]%> height="60" width="60"></td>
+                <td>
+                  <a href=<%= recipe["f2f_url"] %>>
+                    <%= recipe["title"] %>
+                  </a>
+                </td>
+                <td>
+                  <a href=<%= recipe["publisher_url"] %> >
+                    <%= recipe["publisher"] %>
+                  </a>  
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

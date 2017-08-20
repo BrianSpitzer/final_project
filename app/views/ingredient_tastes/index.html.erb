@@ -16,12 +16,21 @@
 
       <% @ingredient_tastes.each do |ingredient_taste| %>
       <tr>
-        <td><%= ingredient_taste.ingredient_id %></td>
-        <td><%= ingredient_taste.taste_id %></td>
+        <td><%= ingredient_taste.ingredient.name %></td>
+        <td><%= ingredient_taste.taste.name %></td>
         <td>
-          <a href="/ingredient_tastes/<%= ingredient_taste.id %>" class="btn btn-primary">Show</a>
-          <a href="/ingredient_tastes/<%= ingredient_taste.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_ingredient_taste/<%= ingredient_taste.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <a href="/ingredient_tastes/<%= ingredient_taste.id %>" class="btn btn-primary">
+            <span class="glyphicon glyphicon-zoom-in" aria-hidden="true">
+            </span>
+          </a>
+          <a href="/ingredient_tastes/<%= ingredient_taste.id %>/edit" class="btn btn-warning">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+            </span>
+          </a>
+          <a href="/delete_ingredient_taste/<%= ingredient_taste.id %>" class="btn btn-danger" rel="nofollow">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true">
+            </span>
+          </a>
         </td>
       </tr>
       <% end %>

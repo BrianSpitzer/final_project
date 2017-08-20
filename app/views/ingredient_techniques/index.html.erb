@@ -16,8 +16,8 @@
 
       <% @ingredient_techniques.each do |ingredient_technique| %>
       <tr>
-        <td><%= ingredient_technique.ingredient_id %></td>
-        <td><%= ingredient_technique.technique_id %></td>
+        <td><%= ingredient_technique.ingredient.name %></td>
+        <td><%= ingredient_technique.technique.name %></td>
         <td>
           <a href="/ingredient_techniques/<%= ingredient_technique.id %>" class="btn btn-primary">Show</a>
           <a href="/ingredient_techniques/<%= ingredient_technique.id %>/edit" class="btn btn-warning">Edit</a>

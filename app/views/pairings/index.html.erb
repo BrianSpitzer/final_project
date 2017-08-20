@@ -18,8 +18,8 @@
 
       <% @pairings.each do |pairing| %>
       <tr>
-        <td><%= pairing.first_ingredient_id %></td>
-        <td><%= pairing.second_ingredient_id %></td>
+        <td><%= pairing.first_ingredient.name %></td>
+        <td><%= pairing.second_ingredient.name %></td>
         <td><%= pairing.pairing_strength %></td>
         <td><%= pairing.inverse %></td>
         <td>
