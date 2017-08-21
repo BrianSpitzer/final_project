@@ -1,5 +1,30 @@
 <div class="page-header">
-  <h2><%= @ingredient.name.titlecase %></h2>
+  <h2>
+    <%= @ingredient.name.titlecase %>
+  </h2>
+  <% if current_user.favorite_ingredients.where(:ingredient_id => @ingredient.id).present? %>
+    <form action="/delete_favorite_ingredient/<%= current_user.favorite_ingredients.find_by(:ingredient_id => @ingredient.id).id %>">
+      <input type="hidden" name="back_to" value="ingredient">
+      <input type="hidden" name="key" value=<% @ingredient.id %>
+      <!--<input type="hidden" name="key" value="<%= @ingredient.id%>">-->
+      <button class="btn btn-link">
+        <i class="fa fa-heart"></i>
+      </button>
+      </a>
+    </form>
+  <% else %>
+    <form action="/create_favorite_ingredient" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="w1iLjvXzqYtx/ZzTeVLpx2o5GmuxYRT5y80KYEt+d6yEfZSWhn3rBwIWG/08tJW1S1AgSrr4D37in+f/2tVoCQ==">
+      
+      <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
+      <input type="hidden" name="key" value=<% @ingredient.id %>
+
+      <button class="btn btn-link">
+        <i class="fa fa-heart-o"></i>
+      </button>
+    </form>
+  <% end %>                    
 </div>
 
 <div class="row">
@@ -92,21 +117,19 @@
         <% if @ingredient.first_pairings.present? || @ingredient.second_pairings.present? %>
           <table class="table">
             <tr>
+              <th>Like this</th>
               <th>Ingredient</th>
               <th>Pairing Strength</th>
               <th>Likes</th>
-              <th>Like this</th>
             </tr>
             <% if @ingredient.first_pairings.present? %> 
               <% @ingredient.first_pairings.each do |pairing| %>
-                <tr>
-                  <td><a href="/ingredients/<%=pairing.second_ingredient_id%>"><%= Ingredient.find(pairing.second_ingredient_id).name %></a></td>
-                  <td><%= pairing.pairing_strength %></td>
-                  <td><%= pairing.favorite_pairings.count %></td>
+                <tr>                  
                   <td>
                     <% if current_user.favorite_pairings.where(:pairing_id => pairing.id).present? %>
                       <form action="/delete_favorite_pairing/<%= current_user.favorite_pairings.find_by(:pairing_id => pairing.id).id %>">
-                        <input type="hidden" name="ingredient_id" value="<%= @ingredient.id%>">
+                        <input type="hidden" name="back_to" value="ingredient">
+                        <input type="hidden" name="key" value="<%= @ingredient.id%>">
                         <button class="btn btn-link">
                           <i class="fa fa-heart"></i>
                         </button>
@@ -129,35 +152,43 @@
                       </form>
                     <% end %>
                   </td>
+                  <td><a href="/ingredients/<%=pairing.second_ingredient_id%>"><%= Ingredient.find(pairing.second_ingredient_id).name %></a></td>
+                  <td><%= pairing.pairing_strength %></td>
+                  <td><%= pairing.favorite_pairings.count %></td>
                 </tr>
               <% end %>  
             <% end %>
             <% if @ingredient.second_pairings.present? %>
               <% @ingredient.second_pairings.each do |pairing| %>
                 <tr>
-                  <td><a href="/ingredients/<%=pairing.first_ingredient_id%>"><%= Ingredient.find(pairing.first_ingredient_id).name %></a></td>
-                  <td><%= pairing.pairing_strength %></td>
-                  <td><%= pairing.favorite_pairings.count %></td>
                   <td>
                     <% if current_user.favorite_pairings.where(:pairing_id => pairing.id).present? %>
-                      <a href="/delete_favorite_pairing/<%= current_user.favorite_pairings.find_by(:pairing_id => pairing.id).id %>" class="btn btn-link">
-                        <i class="fa fa-heart"></i>
-                      </a>
+                      <form action="/delete_favorite_pairing/<%= current_user.favorite_pairings.find_by(:pairing_id => pairing.id).id %>">
+                        <input type="hidden" name="back_to" value="ingredient">
+                        <input type="hidden" name="key" value="<%= @ingredient.id%>">
+                        <button class="btn btn-link">
+                          <i class="fa fa-heart"></i>
+                        </button>
+                        </a>
+                      </form>
                     <% else %>
                       <form action="/create_favorite_pairing" method="post">
                         <!-- Hidden input for authenticity token to protect from forgery -->
                         <input name="authenticity_token" type="hidden" value="w1iLjvXzqYtx/ZzTeVLpx2o5GmuxYRT5y80KYEt+d6yEfZSWhn3rBwIWG/08tJW1S1AgSrr4D37in+f/2tVoCQ==">
                         
                         <input type="hidden" name="pairing_id" value="<%= pairing.id %>">
-          
                         <input type="hidden" name="ingredient_id" value="<%= @ingredient.id%>">
+                        <input type="hidden" name="back_to" value="ingredients_index">
           
                         <button class="btn btn-link">
                           <i class="fa fa-heart-o"></i>
                         </button>
                       </form>
                     <% end %>                    
-                  </td>
+                  </td>                  
+                  <td><a href="/ingredients/<%=pairing.first_ingredient_id%>"><%= Ingredient.find(pairing.first_ingredient_id).name %></a></td>
+                  <td><%= pairing.pairing_strength %></td>
+                  <td><%= pairing.favorite_pairings.count %></td>
                 </tr>
               <% end %>
             <% end %>

@@ -13,6 +13,7 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
+        <th>Favorite?</th>
         <th>Name</th>
         <th>Weight</th>
         <th>Volume</th>
@@ -24,6 +25,28 @@
 
       <% @ingredients.each do |ingredient| %>
       <tr>
+        <td>
+          <% if current_user.favorite_ingredients.where(:ingredient_id => ingredient.id).present? %>
+            <form action="/delete_favorite_ingredient/<%= current_user.favorite_ingredients.find_by(:ingredient_id => ingredient.id).id %>">
+              <input type="hidden" name="back_to" value="ingredient_index">
+              <button class="btn btn-link">
+                <i class="fa fa-heart"></i>
+              </button>
+              </a>
+            </form>
+          <% else %>
+            <form action="/create_favorite_ingredient" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="w1iLjvXzqYtx/ZzTeVLpx2o5GmuxYRT5y80KYEt+d6yEfZSWhn3rBwIWG/08tJW1S1AgSrr4D37in+f/2tVoCQ==">
+              
+              <input type="hidden" name="ingredient_id" value="<%= ingredient.id %>">
+
+              <button class="btn btn-link">
+                <i class="fa fa-heart-o"></i>
+              </button>
+            </form>
+          <% end %>                    
+        </td>   
         <td><a href="/ingredients/<%= ingredient.id %>"><%= ingredient.name %></a></td>
         <td><%= ingredient.weight %></td>
         <td><%= ingredient.volume %></td>

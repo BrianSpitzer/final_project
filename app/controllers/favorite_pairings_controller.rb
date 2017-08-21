@@ -1,6 +1,6 @@
 class FavoritePairingsController < ApplicationController
   def index
-    @favorite_pairings = FavoritePairing.all
+    @favorite_pairings = current_user.favorite_pairings.all
 
     render("favorite_pairings/index.html.erb")
   end
@@ -57,14 +57,21 @@ class FavoritePairingsController < ApplicationController
 
   def destroy
     @favorite_pairing = FavoritePairing.find(params[:id])
-    ingredient_id = params[:ingredient_id]
+    back_to = params[:back_to]
+    key = params[:key]
 
     @favorite_pairing.destroy
 
     if URI(request.referer).path == "/favorite_pairings/#{@favorite_pairing.id}"
       redirect_to("/", :notice => "Favorite pairing deleted.")
     else
-      redirect_to("/ingredients/"+ingredient_id.to_s, :notice => "Favorite pairing deleted.")
+      if back_to == "ingredient"
+        redirect_to("/ingredients/"+key.to_s, :notice => "Favorite pairing deleted.")
+      elsif back_to == "favorite_pairings"
+        redirect_to("/favorite_pairings", :notice => "Favorite pairing deleted.")
+      else
+        redirect_to("/ingredients", :notice => "Favorite pairing deleted.")
+      end
     end
   end
 end
