@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170820215915) do
+ActiveRecord::Schema.define(version: 20170820232153) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20170820215915) do
 #   Unknown type 'fixnum' for column 'user_id'
 
 # Could not dump table "pairings" because of following StandardError
-#   Unknown type 'fixnum' for column 'user_id'
+#   Unknown type '' for column 'user_id'
 
   create_table "recipe_ingredients", force: :cascade do |t|
     t.integer "recipe_id"

@@ -65,12 +65,13 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new
 
-    @ingredient.name = params[:name]
+    @ingredient.name = params[:name].downcase
     @ingredient.weight = params[:weight]
     @ingredient.volume = params[:volume]
     @ingredient.season = params[:season]
     @ingredient.function = params[:function]
     @ingredient.form = params[:form]
+    @ingredient.user_id = current_user.id
 
     save_status = @ingredient.save
 

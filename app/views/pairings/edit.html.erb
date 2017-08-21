@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Pairing #<%= @pairing.id %></h3>
+  <h3>Edit Pairing</h3>
 </div>
 
 <div class="row">
@@ -19,39 +19,51 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for first_ingredient_id -->
-      <div class="form-group">
-        <label for="first_ingredient_id" class="control-label">
-          First ingredient
-        </label>
-
-        <input type="text" id="first_ingredient_id" name="first_ingredient_id" placeholder="First ingredient" class="form-control" value="<%= @pairing.first_ingredient_id %>">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="first_ingredient_id" class="control-label">
+              First ingredient
+            </label>
+          </div>
+          <div class="col-md-10">    
+            <%= select_tag(:first_ingredient_id, options_from_collection_for_select(Ingredient.all, :id, :name, @pairing.first_ingredient_id ), :class => "form-control") %>
+          </div>
+        </div>
       </div>
-
+      
       <!-- Label and input for second_ingredient_id -->
-      <div class="form-group">
-        <label for="second_ingredient_id" class="control-label">
-          Second ingredient
-        </label>
-
-        <input type="text" id="second_ingredient_id" name="second_ingredient_id" placeholder="Second ingredient" class="form-control" value="<%= @pairing.second_ingredient_id %>">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="second_ingredient_id" class="control-label">
+              Second ingredient
+            </label>
+          </div>
+          <div class="col-md-10">    
+            <%= select_tag(:second_ingredient_id, options_from_collection_for_select(Ingredient.all, :id, :name, @pairing.second_ingredient_id ), :class => "form-control") %>
+          </div>
+        </div>
       </div>
 
       <!-- Label and input for pairing_strength -->
-      <div class="form-group">
-        <label for="pairing_strength" class="control-label">
-          Pairing strength
-        </label>
-
-        <input type="text" id="pairing_strength" name="pairing_strength" placeholder="Pairing strength" class="form-control" value="<%= @pairing.pairing_strength %>">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="pairing_strength" class="control-label">
+              Pairing strength
+            </label>
+          </div>
+          <div class = "col-md-10">
+            <%= select_tag(:pairing_strength, options_for_select([
+              ['good','good'], 
+              ['better','better'],
+              ['best','best']
+              ], @pairing.pairing_strength), :class => "form-control") %>        
+          </div>
+        </div>
       </div>
 
-      <!-- Label and input for inverse -->
-      <div class="checkbox">
-        <label for="inverse">
-          <input type="checkbox" id="inverse" name="inverse" value="1" <%= "checked" if @pairing.inverse %>>
-          Inverse
-        </label>
-      </div>
 
       <button class="btn btn-warning">
         Update Pairing

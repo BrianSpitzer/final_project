@@ -41,9 +41,11 @@
         <a href="/ingredients/<%= @ingredient.id %>/edit" class="btn btn-warning">
           <span class="glyphicon glyphicon-pencil" aria-hidden="true">
         </a>
-        <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-danger" rel="nofollow">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true">
-        </a>
+        <% if @ingredient.user_id == current_user.id %>
+          <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-danger" rel="nofollow">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true">
+          </a>
+        <% end %>
       </div>
     </div>
    </div>
@@ -100,8 +102,33 @@
                 <tr>
                   <td><a href="/ingredients/<%=pairing.second_ingredient_id%>"><%= Ingredient.find(pairing.second_ingredient_id).name %></a></td>
                   <td><%= pairing.pairing_strength %></td>
-                  <td>Coming soon</td>
-                  <td>Coming soon</td>
+                  <td><%= pairing.favorite_pairings.count %></td>
+                  <td>
+                    <% if current_user.favorite_pairings.where(:pairing_id => pairing.id).present? %>
+                      <form action="/delete_favorite_pairing/<%= current_user.favorite_pairings.find_by(:pairing_id => pairing.id).id %>">
+                        <input type="hidden" name="ingredient_id" value="<%= @ingredient.id%>">
+                        <button class="btn btn-link">
+                          <i class="fa fa-heart"></i>
+                        </button>
+                        </a>
+                      </form>
+                    <% else %>
+                      <form action="/create_favorite_pairing" method="post">
+                        <!-- Hidden input for authenticity token to protect from forgery -->
+                        <input name="authenticity_token" type="hidden" value="w1iLjvXzqYtx/ZzTeVLpx2o5GmuxYRT5y80KYEt+d6yEfZSWhn3rBwIWG/08tJW1S1AgSrr4D37in+f/2tVoCQ==">
+                        
+                        <input type="hidden" name="pairing_id" value="<%= pairing.id %>">
+          
+                        <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                        
+                        <input type="hidden" name="ingredient_id" value="<%= @ingredient.id%>">
+          
+                        <button class="btn btn-link">
+                          <i class="fa fa-heart-o"></i>
+                        </button>
+                      </form>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>  
             <% end %>
@@ -110,8 +137,27 @@
                 <tr>
                   <td><a href="/ingredients/<%=pairing.first_ingredient_id%>"><%= Ingredient.find(pairing.first_ingredient_id).name %></a></td>
                   <td><%= pairing.pairing_strength %></td>
-                  <td>Coming soon</td>
-                  <td>Coming soon</td>
+                  <td><%= pairing.favorite_pairings.count %></td>
+                  <td>
+                    <% if current_user.favorite_pairings.where(:pairing_id => pairing.id).present? %>
+                      <a href="/delete_favorite_pairing/<%= current_user.favorite_pairings.find_by(:pairing_id => pairing.id).id %>" class="btn btn-link">
+                        <i class="fa fa-heart"></i>
+                      </a>
+                    <% else %>
+                      <form action="/create_favorite_pairing" method="post">
+                        <!-- Hidden input for authenticity token to protect from forgery -->
+                        <input name="authenticity_token" type="hidden" value="w1iLjvXzqYtx/ZzTeVLpx2o5GmuxYRT5y80KYEt+d6yEfZSWhn3rBwIWG/08tJW1S1AgSrr4D37in+f/2tVoCQ==">
+                        
+                        <input type="hidden" name="pairing_id" value="<%= pairing.id %>">
+          
+                        <input type="hidden" name="ingredient_id" value="<%= @ingredient.id%>">
+          
+                        <button class="btn btn-link">
+                          <i class="fa fa-heart-o"></i>
+                        </button>
+                      </form>
+                    <% end %>                    
+                  </td>
                 </tr>
               <% end %>
             <% end %>

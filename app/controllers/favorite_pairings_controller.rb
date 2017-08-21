@@ -20,13 +20,15 @@ class FavoritePairingsController < ApplicationController
   def create
     @favorite_pairing = FavoritePairing.new
 
-    @favorite_pairing.user_id = params[:user_id]
+    @favorite_pairing.user_id = current_user.id
     @favorite_pairing.pairing_id = params[:pairing_id]
+    
+    ingredient_id = params[:ingredient_id]
 
     save_status = @favorite_pairing.save
 
     if save_status == true
-      redirect_to("/favorite_pairings/#{@favorite_pairing.id}", :notice => "Favorite pairing created successfully.")
+      redirect_to("/ingredients/"+ingredient_id.to_s, :notice => "Favorite pairing created successfully.")
     else
       render("favorite_pairings/new.html.erb")
     end
@@ -55,13 +57,14 @@ class FavoritePairingsController < ApplicationController
 
   def destroy
     @favorite_pairing = FavoritePairing.find(params[:id])
+    ingredient_id = params[:ingredient_id]
 
     @favorite_pairing.destroy
 
     if URI(request.referer).path == "/favorite_pairings/#{@favorite_pairing.id}"
       redirect_to("/", :notice => "Favorite pairing deleted.")
     else
-      redirect_to(:back, :notice => "Favorite pairing deleted.")
+      redirect_to("/ingredients/"+ingredient_id.to_s, :notice => "Favorite pairing deleted.")
     end
   end
 end

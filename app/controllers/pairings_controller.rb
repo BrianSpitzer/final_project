@@ -24,6 +24,7 @@ class PairingsController < ApplicationController
     @pairing.second_ingredient_id = params[:second_ingredient_id]
     @pairing.pairing_strength = params[:pairing_strength]
     @pairing.inverse = params[:inverse]
+    @pairing.user_id = current_user.id
 
     save_status = @pairing.save
 

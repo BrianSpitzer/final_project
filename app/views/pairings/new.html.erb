@@ -45,14 +45,6 @@
         <input type="text" id="pairing_strength" name="pairing_strength" placeholder="Pairing strength" class="form-control" value="<%= @pairing.pairing_strength %>">
       </div>
 
-      <!-- Label and input for inverse -->
-      <div class="checkbox">
-        <label for="inverse">
-          <input type="checkbox" id="inverse" name="inverse" value="1" <%= "checked" if @pairing.inverse %>>
-          Inverse
-        </label>
-      </div>
-
       <button class="btn btn-success">
         Create Pairing
       </button>

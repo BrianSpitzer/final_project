@@ -36,7 +36,8 @@ class Ingredient < ApplicationRecord
   has_many :comments, :dependent => :destroy
   has_many :recipe_ingredients, :dependent => :destroy
   has_many :ingredient_tastes, :dependent => :destroy
-  
+  belongs_to :user
+    
   #Indirect associations
   has_many :techniques, :through => :ingredient_techniques, :source => :technique
   has_many :tastes, :through => :ingredient_tastes, :source => :taste

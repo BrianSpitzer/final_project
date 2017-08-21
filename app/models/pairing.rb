@@ -6,10 +6,9 @@
 #  first_ingredient_id  :integer
 #  second_ingredient_id :integer
 #  pairing_strength     :string
-#  inverse              :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  user_id              :fixnum
+#  user_id              :
 #
 
 class Pairing < ApplicationRecord
@@ -20,6 +19,7 @@ class Pairing < ApplicationRecord
   # Direct associations
   belongs_to :first_ingredient, :class_name => "Ingredient"
   belongs_to :second_ingredient, :class_name => "Ingredient"
+  belongs_to :user
   has_many :favorite_pairings, :dependent => :destroy
   has_many :comments, :dependent => :destroy
     

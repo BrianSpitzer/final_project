@@ -1,7 +1,23 @@
 Rails.application.routes.draw do
 
-  root "ingredients#index"
+  # Routes for the Ingredient resource:
+  # CREATE
+  get "/ingredients/new", :controller => "ingredients", :action => "new"
+  post "/create_ingredient", :controller => "ingredients", :action => "create"
 
+  # READ
+  get "/ingredients", :controller => "ingredients", :action => "index"
+  get "/ingredients/:id", :controller => "ingredients", :action => "show"
+
+  # UPDATE
+  get "/ingredients/:id/edit", :controller => "ingredients", :action => "edit"
+  post "/update_ingredient/:id", :controller => "ingredients", :action => "update"
+
+  # DELETE
+  get "/delete_ingredient/:id", :controller => "ingredients", :action => "destroy"
+  
+  #------------------------------
+  
   # Routes for the Ingredient_taste resource:
   # CREATE
   get "/ingredient_tastes/new", :controller => "ingredient_tastes", :action => "new"
@@ -222,24 +238,11 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_pairing/:id", :controller => "pairings", :action => "destroy"
+
   #------------------------------
-
-  # Routes for the Ingredient resource:
-  # CREATE
-  get "/ingredients/new", :controller => "ingredients", :action => "new"
-  post "/create_ingredient", :controller => "ingredients", :action => "create"
-
-  # READ
-  get "/ingredients", :controller => "ingredients", :action => "index"
-  get "/ingredients/:id", :controller => "ingredients", :action => "show"
-
-  # UPDATE
-  get "/ingredients/:id/edit", :controller => "ingredients", :action => "edit"
-  post "/update_ingredient/:id", :controller => "ingredients", :action => "update"
-
-  # DELETE
-  get "/delete_ingredient/:id", :controller => "ingredients", :action => "destroy"
-  #------------------------------
+  
+  
+  root "ingredients#index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
