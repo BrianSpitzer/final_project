@@ -72,7 +72,7 @@ class FavoriteIngredientsController < ApplicationController
     if URI(request.referer).path == "/favorite_ingredients/#{@favorite_ingredient.id}"
       redirect_to("/", :notice => "Favorite ingredient deleted.")
     else
-      if back_to == "ingredients_index"
+      if back_to == "ingredient_index"
         redirect_to("/ingredients", :notice => "Favorite ingredient deleted.")
       elsif back_to == "ingredient"
         key = params(:key)
