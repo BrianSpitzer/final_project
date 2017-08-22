@@ -26,21 +26,25 @@ class IngredientsController < ApplicationController
       
       foods = parsed_nutrition.dig("report","foods")
       
-      @serving_grams = foods[0]["weight"]
-      @serving_description = foods[0]["measure"]
-      
-      nutrients = foods[0]["nutrients"]
-      
-      nutrients.each do |nutrient|
-        if nutrient["nutrient"] == "Energy"
-          @calories = nutrient["value"]
-        elsif nutrient["nutrient"] == "Sugars, total"
-          @sugars = nutrient["value"]
-        elsif nutrient["nutrient"] == "Total lipid (fat)"
-          @fat = nutrient["value"]
-        elsif nutrient["nutrient"] == "Carbohydrate, by difference"
-          @carbs = nutrient["value"]
+      if foods.count >= 1
+        @serving_grams = foods[0]["weight"]
+        @serving_description = foods[0]["measure"]
+        
+        nutrients = foods[0]["nutrients"]
+        
+        nutrients.each do |nutrient|
+          if nutrient["nutrient"] == "Energy"
+            @calories = nutrient["value"]
+          elsif nutrient["nutrient"] == "Sugars, total"
+            @sugars = nutrient["value"]
+          elsif nutrient["nutrient"] == "Total lipid (fat)"
+            @fat = nutrient["value"]
+          elsif nutrient["nutrient"] == "Carbohydrate, by difference"
+            @carbs = nutrient["value"]
+          end
         end
+      else
+        @ndbno = "not on file"
       end
     end
     

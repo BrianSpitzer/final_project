@@ -32,3 +32,41 @@
 
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <h3 class="panel-title">Recipes for this pairing</h3>
+      </div>
+      <div class="panel-body">
+        <% if @recipe_list.count == 0 %>
+          There aren't any recipe suggestions.
+        <% else %>
+          <table class="table">
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Publisher</th>
+            </tr>
+            <% @recipe_list.each do |recipe| %>
+              <tr>
+                <td><img src=<%=recipe["image_url"]%> height="60" width="60"></td>
+                <td>
+                  <a href=<%= recipe["f2f_url"] %>>
+                    <%= recipe["title"] %>
+                  </a>
+                </td>
+                <td>
+                  <a href=<%= recipe["publisher_url"] %> >
+                    <%= recipe["publisher"] %>
+                  </a>  
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

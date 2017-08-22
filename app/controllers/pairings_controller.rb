@@ -1,3 +1,5 @@
+require 'unirest'
+
 class PairingsController < ApplicationController
   def index
     @pairings = Pairing.all
@@ -7,6 +9,15 @@ class PairingsController < ApplicationController
 
   def show
     @pairing = Pairing.find(params[:id])
+
+    #Load recipe links from Food2Fork
+    response = Unirest.get "https://community-food2fork.p.mashape.com/search?key=e76656b4ddc922e481faa025ec00cb51&q="+@pairing.first_ingredient.name.gsub(" ","+")+","+@pairing.second_ingredient.name.gsub(" ","+"),
+        headers:{
+                    "X-Mashape-Key" => "eZppqF5VZOmshsgoZVetyK5rAfxQp1Zx2j2jsnOyULlWeaufec",
+                    "Accept" => "application/json"
+                }
+    @recipe_count = response.body["count"]
+    @recipe_list = response.body["recipes"]  
 
     render("pairings/show.html.erb")
   end

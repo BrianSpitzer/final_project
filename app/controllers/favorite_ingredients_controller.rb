@@ -1,6 +1,6 @@
 class FavoriteIngredientsController < ApplicationController
   def index
-    @favorite_ingredients = FavoriteIngredient.all
+    @favorite_ingredients = current_user.favorite_ingredients.all
 
     render("favorite_ingredients/index.html.erb")
   end
@@ -75,8 +75,8 @@ class FavoriteIngredientsController < ApplicationController
       if back_to == "ingredient_index"
         redirect_to("/ingredients", :notice => "Favorite ingredient deleted.")
       elsif back_to == "ingredient"
-        key = params(:key)
-        redirect_to("/ingredient"+key.to_s, :notice => "Favorite ingredient deleted.")
+        key = params[:key]
+        redirect_to("/ingredients/"+key.to_s, :notice => "Favorite ingredient deleted.")
       end
     end
   end

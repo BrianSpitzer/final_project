@@ -1,28 +1,57 @@
 <div class="page-header">
   <h1>
-    Favorite ingredients
-    <a href="/favorite_ingredients/new" class="btn btn-lg btn-success">New Favorite ingredient</a>
-  </h1>
+    Favorite Ingredients
+  </h1>  
+  <!--<a href="/ingredients/new" class="btn btn-default btn-success">    -->
+  <!--  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> -->
+  <!--  Add new ingredient-->
+  <!--</a>-->
+
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>User</th>
-        <th>Ingredient</th>
-        <th>Actions</th>
+        <th>Favorite?</th>
+        <th>Name</th>
+        <th>Weight</th>
+        <th>Volume</th>
+        <th>Season</th>
+        <th>Function</th>
+        <th>Form</th>
       </tr>
 
-      <% @favorite_ingredients.each do |favorite_ingredient| %>
+      <% @favorite_ingredients.each do |favorite| %>
       <tr>
-        <td><%= favorite_ingredient.user_id %></td>
-        <td><%= favorite_ingredient.ingredient_id %></td>
         <td>
-          <a href="/favorite_ingredients/<%= favorite_ingredient.id %>" class="btn btn-primary">Show</a>
-          <a href="/favorite_ingredients/<%= favorite_ingredient.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_favorite_ingredient/<%= favorite_ingredient.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
+          <% if current_user.favorite_ingredients.where(:ingredient_id => favorite.ingredient_id).present? %>
+            <form action="/delete_favorite_ingredient/<%= current_user.favorite_ingredients.find_by(:ingredient_id => favorite.ingredient_id).id %>">
+              <input type="hidden" name="back_to" value="ingredient_index">
+              <button class="btn btn-link">
+                <i class="fa fa-heart"></i>
+              </button>
+              </a>
+            </form>
+          <% else %>
+            <form action="/create_favorite_ingredient" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="w1iLjvXzqYtx/ZzTeVLpx2o5GmuxYRT5y80KYEt+d6yEfZSWhn3rBwIWG/08tJW1S1AgSrr4D37in+f/2tVoCQ==">
+              
+              <input type="hidden" name="ingredient_id" value="<%= favorite.ingredient_id %>">
+
+              <button class="btn btn-link">
+                <i class="fa fa-heart-o"></i>
+              </button>
+            </form>
+          <% end %>                    
+        </td>   
+        <td><a href="/ingredients/<%= favorite.ingredient_id %>"><%= favorite.ingredient.name %></a></td>
+        <td><%= favorite.ingredient.weight %></td>
+        <td><%= favorite.ingredient.volume %></td>
+        <td><%= favorite.ingredient.season %></td>
+        <td><%= favorite.ingredient.function %></td>
+        <td><%= favorite.ingredient.form %></td>
       </tr>
       <% end %>
     </table>
