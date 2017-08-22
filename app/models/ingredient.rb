@@ -3,6 +3,7 @@
 # Table name: ingredients
 #
 #  id         :integer          not null, primary key
+#  user_id    :integer
 #  name       :string
 #  weight     :string
 #  volume     :string
@@ -11,7 +12,6 @@
 #  form       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :fixnum
 #
 
 class Ingredient < ApplicationRecord
@@ -32,9 +32,6 @@ class Ingredient < ApplicationRecord
   has_many :first_pairings, :class_name => "Pairing", :foreign_key => "first_ingredient_id", :dependent => :destroy
   has_many :second_pairings, :class_name => "Pairing", :foreign_key => "second_ingredient_id", :dependent => :destroy
   has_many :favorite_ingredients, :dependent => :destroy
-  has_many :ingredient_groups, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
-  has_many :recipe_ingredients, :dependent => :destroy
   has_many :ingredient_tastes, :dependent => :destroy
   belongs_to :user
     

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170820232153) do
+ActiveRecord::Schema.define(version: 20170821195903) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,15 +43,6 @@ ActiveRecord::Schema.define(version: 20170820232153) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "ingredient_id"
-    t.integer "pairing_id"
-    t.integer "recipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "favorite_ingredients", force: :cascade do |t|
     t.integer "user_id"
     t.integer "ingredient_id"
@@ -62,21 +53,6 @@ ActiveRecord::Schema.define(version: 20170820232153) do
   create_table "favorite_pairings", force: :cascade do |t|
     t.integer "user_id"
     t.integer "pairing_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "favorite_recipes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "recipe_id"
-    t.integer "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredient_groups", force: :cascade do |t|
-    t.string "name"
-    t.integer "ingredient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,32 +71,23 @@ ActiveRecord::Schema.define(version: 20170820232153) do
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "ingredients" because of following StandardError
-#   Unknown type 'fixnum' for column 'user_id'
-
-# Could not dump table "pairings" because of following StandardError
-#   Unknown type '' for column 'user_id'
-
-  create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "ingredient_id"
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "recipe_methods", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.string "sequence"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "recipes", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
+  create_table "ingredients", force: :cascade do |t|
     t.integer "user_id"
+    t.string "name"
+    t.string "weight"
+    t.string "volume"
+    t.string "season"
+    t.string "function"
+    t.string "form"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pairings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "first_ingredient_id"
+    t.integer "second_ingredient_id"
+    t.string "pairing_strength"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

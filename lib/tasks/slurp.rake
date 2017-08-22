@@ -71,6 +71,13 @@ namespace :slurp do
       if row["form"].present?
         t.form = row["form"]
       end
+      
+      if row["user"].present?
+        t.user_id = row["user"]
+      else
+        t.user_id = 1
+      end
+      
       t.save
       puts "#{t.name} saved"
     end
@@ -98,6 +105,7 @@ namespace :slurp do
       else
         i = Ingredient.new
         i.name = first
+        i.user_id = 1
         i.save
         if Ingredient.find_by(:name => first).present?
           first_id = Ingredient.find_by(:name => first).id
@@ -114,6 +122,7 @@ namespace :slurp do
       else
         i = Ingredient.new
         i.name = second
+        i.user_id = 1
         i.save
         if Ingredient.find_by(:name => second).present?
           second_id = Ingredient.find_by(:name => second).id
@@ -151,6 +160,7 @@ namespace :slurp do
         p.first_ingredient_id = first_id
         p.second_ingredient_id = second_id
         p.pairing_strength = row["strength"]
+        p.user_id = row["user"]
         p.save
         puts "Created pairing #{first}, #{second}"
       end

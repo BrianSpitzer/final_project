@@ -35,10 +35,7 @@ class User < ApplicationRecord
   # Direct assocations
   has_many :favorite_ingredients, :dependent => :destroy
   has_many :favorite_pairings, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
-  has_many :recipes, :dependent => :nullify
-  has_many :favorite_recipes, :dependent => :destroy
-  
+
   # Indirect associations
   has_many :ingredients, :through => :favorite_ingredients, :source => :ingredient
   has_many :pairings, :through => :favorite_pairings, :source => :pairing

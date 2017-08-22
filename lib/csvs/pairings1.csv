@@ -1,53 +1,51 @@
-first,second,strength
-ACHIOTE SEEDS,beef,good
-ACHIOTE SEEDS,chicken,good
-ACHIOTE SEEDS,chiles,good
-ACHIOTE SEEDS,citrus,good
-ACHIOTE SEEDS,fish,good
-ACHIOTE SEEDS,duck,good
-ACHIOTE SEEDS,quail,good
-ACHIOTE SEEDS,garlic,good
-ACHIOTE SEEDS,pork,good
-ACHIOTE SEEDS,lobster,good
-ACHIOTE SEEDS,shrimp,good
-ALLSPICE,apples,good
-ALLSPICE,baked,good
-ALLSPICE,goods,good
-ALLSPICE,beans,good
-ALLSPICE,BEEF,good
-ALLSPICE,beets,good
-ALLSPICE,breads,good
-ALLSPICE,cabbage,good
-ALLSPICE,cakes,good
-ALLSPICE,carrots,good
-ALLSPICE,chicken,good
+first,second,strength,user
+ACHIOTE SEEDS,beef,good,1
+ACHIOTE SEEDS,chicken,good,1
+ACHIOTE SEEDS,chiles,good,1
+ACHIOTE SEEDS,citrus,good,1
+ACHIOTE SEEDS,fish,good,1
+ACHIOTE SEEDS,duck,good,1
+ACHIOTE SEEDS,quail,good,1
+ACHIOTE SEEDS,garlic,good,1
+ACHIOTE SEEDS,pork,good,1
+ACHIOTE SEEDS,lobster,good,1
+ACHIOTE SEEDS,shrimp,good,1
+ALLSPICE,apples,good,1
+ALLSPICE,beans,good,1
+ALLSPICE,BEEF,good,1
+ALLSPICE,beets,good,1
+ALLSPICE,breads,good,1
+ALLSPICE,cabbage,good,1
+ALLSPICE,cakes,good,1
+ALLSPICE,carrots,good,1
+ALLSPICE,chicken,good,1
 ALLSPICE,chickpeas,good
-ALLSPICE,chile,good
-ALLSPICE,peppers,good
-ALLSPICE,cinnamon,good
-ALLSPICE,cloves,good
-ALLSPICE,cookies,good
-ALLSPICE,coriander,good
-ALLSPICE,currants,good
-ALLSPICE,curry powder,good
-ALLSPICE,eggplant,good
-ALLSPICE,fish,good
-ALLSPICE,garlic,good
-ALLSPICE,ginger,good
-ALLSPICE,goat,good
-ALLSPICE,grains,good
-ALLSPICE,ham,good
-ALLSPICE,ketchup,good
-ALLSPICE,lamb,good
-ALLSPICE,mushrooms,good
-ALLSPICE,mustard,good
-ALLSPICE,nutmeg,good
-ALLSPICE,nuts,good
-ALLSPICE,onions,good
-ALLSPICE,pepper,good
-ALLSPICE,pineapple,good
-ALLSPICE,pork,good
-ALLSPICE,PUMPKIN,better
-ALLSPICE,rabbit,good
-ALLSPICE,rice,good
-ALLSPICE,rosemary,good
+ALLSPICE,chile,good,1
+ALLSPICE,peppers,good,1
+ALLSPICE,cinnamon,good,1
+ALLSPICE,cloves,good,1
+ALLSPICE,cookies,good,1
+ALLSPICE,coriander,good,1
+ALLSPICE,currants,good,1
+ALLSPICE,curry powder,good,1
+ALLSPICE,eggplant,good,1
+ALLSPICE,fish,good,1
+ALLSPICE,garlic,good,1
+ALLSPICE,ginger,good,1
+ALLSPICE,goat,good,1
+ALLSPICE,grains,good,1
+ALLSPICE,ham,good,1
+ALLSPICE,ketchup,good,1
+ALLSPICE,lamb,good,1
+ALLSPICE,mushrooms,good,1
+ALLSPICE,mustard,good,1
+ALLSPICE,nutmeg,good,1
+ALLSPICE,nuts,good,1
+ALLSPICE,onions,good,1
+ALLSPICE,pepper,good,1
+ALLSPICE,pineapple,good,1
+ALLSPICE,pork,good,1
+ALLSPICE,PUMPKIN,better,1
+ALLSPICE,rabbit,good,1
+ALLSPICE,rice,good,1
+ALLSPICE,rosemary,good,1
