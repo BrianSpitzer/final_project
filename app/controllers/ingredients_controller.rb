@@ -122,7 +122,7 @@ class IngredientsController < ApplicationController
     if URI(request.referer).path == "/ingredients/#{@ingredient.id}"
       redirect_to("/", :notice => "Ingredient deleted.")
     else
-      redirect_to(:back, :notice => "Ingredient deleted.")
+      redirect_to("/", :notice => "Ingredient deleted.")
     end
   end
 end

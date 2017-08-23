@@ -16,21 +16,28 @@
               <th>Pairing Strength</th>
               <th>Likes</th>
               <th>Like this</th>
+              <th></th>
             </tr>
-            <% @favorite_pairings.each do |pairing| %>
+            <% @favorite_pairings.each do |favorite| %>
               <tr>
-                <td><a href="/ingredients/<%=pairing.pairing.first_ingredient_id%>"><%= Ingredient.find(pairing.pairing.first_ingredient_id).name %></a></td>
-                <td><a href="/ingredients/<%=pairing.pairing.second_ingredient_id%>"><%= Ingredient.find(pairing.pairing.second_ingredient_id).name %></a></td>
-                <td><%= pairing.pairing.pairing_strength %></td>
-                <td><%= pairing.pairing.favorite_pairings.count %></td>
+                <td><a href="/ingredients/<%=favorite.pairing.first_ingredient_id%>"><%= Ingredient.find(favorite.pairing.first_ingredient_id).name %></a></td>
+                <td><a href="/ingredients/<%=favorite.pairing.second_ingredient_id%>"><%= Ingredient.find(favorite.pairing.second_ingredient_id).name %></a></td>
+                <td><%= favorite.pairing.pairing_strength %></td>
+                <td><%= favorite.pairing.favorite_pairings.count %></td>
                 <td>
-                  <form action="/delete_favorite_pairing/<%= pairing.id %>">
+                  <form action="/delete_favorite_pairing/<%= favorite.id %>">
                     <input type="hidden" name="back_to" value="favorite_pairings">
                     <button class="btn btn-link">
                       <i class="fa fa-heart"></i>
                     </button>
                     </a>
                   </form>
+                </td>
+                <td>
+                  <a href="/pairings/<%= favorite.pairing.id %>" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-zoom-in" aria-hidden="true">
+                    </span>
+                  </a>
                 </td>
               </tr>
             <% end %>

@@ -23,19 +23,10 @@ class FavoriteIngredientsController < ApplicationController
     @favorite_ingredient.user_id = current_user.id
     @favorite_ingredient.ingredient_id = params[:ingredient_id]
     
-    back_to = params[:back_to]
-
     save_status = @favorite_ingredient.save
 
     if save_status == true
-      if back_to == "ingredients_index"
-        redirect_to("/ingredients", :notice => "Favorite ingredient created successfully.")
-      elsif back_to == "ingredient"
-        key = params[:key]
-        redirect_to("/ingredients"+key.to_s, :notice => "Favorite ingredient created successfully.")
-      else
-        redirect_to("/ingredients", :notice => "Favorite ingredient created successfully.")
-      end
+      redirect_to(URI(request.referer).path, :notice => "Favorite ingredient created successfully.")
     else
       render("favorite_ingredients/new.html.erb")
     end
@@ -64,20 +55,10 @@ class FavoriteIngredientsController < ApplicationController
 
   def destroy
     @favorite_ingredient = FavoriteIngredient.find(params[:id])
-    back_to = params[:back_to]
-    key = params[:key]
 
     @favorite_ingredient.destroy
 
-    if URI(request.referer).path == "/favorite_ingredients/#{@favorite_ingredient.id}"
-      redirect_to("/", :notice => "Favorite ingredient deleted.")
-    else
-      if back_to == "ingredient_index"
-        redirect_to("/ingredients", :notice => "Favorite ingredient deleted.")
-      elsif back_to == "ingredient"
-        key = params[:key]
-        redirect_to("/ingredients/"+key.to_s, :notice => "Favorite ingredient deleted.")
-      end
-    end
+    redirect_to(URI(request.referer).path, :notice => "Favorite ingredient deleted.")
+    
   end
 end

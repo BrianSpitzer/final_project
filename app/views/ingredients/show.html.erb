@@ -4,7 +4,6 @@
     <span>
       <% if current_user.favorite_ingredients.where(:ingredient_id => @ingredient.id).present? %>
         <form action="/delete_favorite_ingredient/<%= current_user.favorite_ingredients.find_by(:ingredient_id => @ingredient.id).id %>">
-          <input type="hidden" name="back_to" value="ingredient">
           <input type="hidden" name="key" value="<% @ingredient.id %>">
           <button class="btn btn-link">
             <i class="fa fa-heart"></i>
@@ -130,7 +129,6 @@
                   <td>
                     <% if current_user.favorite_pairings.where(:pairing_id => pairing.id).present? %>
                       <form action="/delete_favorite_pairing/<%= current_user.favorite_pairings.find_by(:pairing_id => pairing.id).id %>">
-                        <input type="hidden" name="back_to" value="ingredient">
                         <input type="hidden" name="key" value="<%= @ingredient.id%>">
                         <button class="btn btn-link">
                           <i class="fa fa-heart"></i>
@@ -162,6 +160,12 @@
                       <span class="glyphicon glyphicon-zoom-in" aria-hidden="true">
                       </span>
                     </a>
+                    <% if pairing.user_id == current_user.id %>
+                      <a href="/delete_pairing/<%= pairing.id %>" class="btn btn-danger" rel="nofollow">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true">
+                        </span>
+                      </a>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>  
@@ -172,7 +176,6 @@
                   <td>
                     <% if current_user.favorite_pairings.where(:pairing_id => pairing.id).present? %>
                       <form action="/delete_favorite_pairing/<%= current_user.favorite_pairings.find_by(:pairing_id => pairing.id).id %>">
-                        <input type="hidden" name="back_to" value="ingredient">
                         <input type="hidden" name="key" value="<%= @ingredient.id%>">
                         <button class="btn btn-link">
                           <i class="fa fa-heart"></i>
@@ -186,8 +189,7 @@
                         
                         <input type="hidden" name="pairing_id" value="<%= pairing.id %>">
                         <input type="hidden" name="ingredient_id" value="<%= @ingredient.id%>">
-                        <input type="hidden" name="back_to" value="ingredients_index">
-          
+
                         <button class="btn btn-link">
                           <i class="fa fa-heart-o"></i>
                         </button>
@@ -197,6 +199,19 @@
                   <td><a href="/ingredients/<%=pairing.first_ingredient_id%>"><%= Ingredient.find(pairing.first_ingredient_id).name %></a></td>
                   <td><%= pairing.pairing_strength %></td>
                   <td><%= pairing.favorite_pairings.count %></td>
+                    <td>
+                    <a href="/pairings/<%= pairing.id %>" class="btn btn-primary">
+                      <span class="glyphicon glyphicon-zoom-in" aria-hidden="true">
+                      </span>
+                    </a>
+                    <% if pairing.user_id == current_user.id %>
+                      <a href="/delete_pairing/<%= pairing.id %>" class="btn btn-danger" rel="nofollow">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true">
+                        </span>
+                      </a>
+                    <% end %>
+                  </td>
+
                 </tr>
               <% end %>
             <% end %>
@@ -279,12 +294,12 @@
               <tr>
                 <td><img src=<%=recipe["image_url"]%> height="60" width="60"></td>
                 <td>
-                  <a href=<%= recipe["f2f_url"] %>>
+                  <a href=<%= recipe["f2f_url"] %> target="_blank">
                     <%= recipe["title"] %>
                   </a>
                 </td>
                 <td>
-                  <a href=<%= recipe["publisher_url"] %> >
+                  <a href=<%= recipe["publisher_url"] %> target="_blank" >
                     <%= recipe["publisher"] %>
                   </a>  
                 </td>

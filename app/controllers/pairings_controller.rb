@@ -33,13 +33,17 @@ class PairingsController < ApplicationController
     
     first_id = params[:first_ingredient_id]
     second_id = params[:second_ingredient_id]
+    save = 0
 
     return_to = first_id
     
-    if first_id > second_id
+    if first_id == second_id
+      save = 0
+    elsif first_id > second_id
       third_id = first_id
       first_id = second_id
       second_id = third_id
+      save = 1
     end
 
     @pairing.first_ingredient_id = first_id
@@ -47,14 +51,16 @@ class PairingsController < ApplicationController
     @pairing.pairing_strength = params[:pairing_strength]
     @pairing.user_id = current_user.id
 
-
-
-    save_status = @pairing.save
+    if save == 1
+      save_status = @pairing.save
+    else
+      save_status = false
+    end
 
     if save_status == true
       redirect_to("/ingredients/#{return_to}", :notice => "Pairing created successfully.")
     else
-      redirect_to("/ingredients/#{return_to}")
+      redirect_to("/ingredients/#{return_to}", :notice => "Pairing not created.")
     end
   end
 
@@ -89,7 +95,7 @@ class PairingsController < ApplicationController
     if URI(request.referer).path == "/pairings/#{@pairing.id}"
       redirect_to("/", :notice => "Pairing deleted.")
     else
-      redirect_to(:back, :notice => "Pairing deleted.")
+      redirect_to(URI(request.referer).path, :notice => "Pairing deleted.")
     end
   end
 end
