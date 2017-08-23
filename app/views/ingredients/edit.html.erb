@@ -153,6 +153,7 @@
             <div class="col-md-12 text-right">
               <button class="btn btn-primary">
                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+                </span>
               </button>
               or
               <a href="/ingredients/<%= @ingredient.id %>">Cancel</a>
@@ -211,7 +212,8 @@
                 </div>
                 <div class="text-right">
                   <button class="btn btn-success">
-                    Create Taste
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                    </span>
                   </button>
                   or
                   <a href="/ingredients">Cancel</a>
@@ -268,7 +270,8 @@
                 </div>
                 <div class="text-right">
                   <button class="btn btn-success">
-                    Create Technique
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                    </span>
                   </button>
                   or
                   <a href="/ingredients">Cancel</a>
@@ -280,4 +283,10 @@
       </div>
     </div>
   </div>
+        <form action="/ingredients/<%= @ingredient.id %>">
+          <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
+            </span> Back to <%= @ingredient.name %>
+          </button>
+        </form>
 </div>
