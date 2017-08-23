@@ -122,7 +122,7 @@
               <th>Ingredient</th>
               <th>Pairing Strength</th>
               <th>Likes</th>
-              <th>Actions</th>
+              <th> </th>
             </tr>
             <% if @ingredient.first_pairings.present? %> 
               <% @ingredient.first_pairings.each do |pairing| %>
@@ -204,6 +204,56 @@
         <% else %>
           There aren't any recommended pairings yet.
         <% end %>
+        <div>
+          <form action="/create_pairing" method="post">
+            <!-- Hidden input for authenticity token to protect from forgery -->
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+      
+            <!-- Hidden input for ingredient_id -->
+            <input type="hidden" name="first_ingredient_id" value="<%= @ingredient.id %>">
+      
+            <!-- Label and input for second_ingredient_id -->
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="second_ingredient_id" class="control-label">
+                    Pair with
+                  </label>
+                </div>
+
+                <div class="col-md-4">
+                  <%= select_tag(:second_ingredient_id, options_from_collection_for_select(Ingredient.all.order(:name), :id, :name, @pairing.second_ingredient_id), :class => "form-control") %>
+                </div>
+                
+                <div class="col-md-1">
+                  
+                </div>
+                
+                <div class="col-md-2">
+                  <label for="pairing_strength" class="control-label">
+                    Pairing strength
+                  </label>
+                </div>        
+      
+                <div class="col-md-3">
+                  <%= select_tag(:pairing_strength, options_for_select([
+                    ['good','good'], 
+                    ['better','better'],
+                    ['best','best'],
+                    ], @pairing.pairing_strength), :class => "form-control", :include_blank => true) %>
+                </div>
+  
+              </div>
+            </div>
+            <div class="text-right">
+              <button class="btn btn-success">
+                Create Pairing
+              </button>
+              or
+              <a href="/ingredients">Cancel</a>
+            </div>
+          </form>
+        </div> 
       </div>
     </div>
   </div>

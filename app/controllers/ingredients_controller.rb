@@ -15,6 +15,7 @@ class IngredientsController < ApplicationController
     @sugars = 0
     @fat = 0
     @carbs = 0
+    @pairing = Pairing.new
 
     # Load nutritional information from USDA
     parsed_search = JSON.parse(open("https://api.nal.usda.gov/ndb/search/?format=json&q="+@ingredient.name+"&sort=n&max=250&offset=0&ds=Standard%20Reference&api_key=7wmIYyJAsQ4O7ZGLqgMqksUyjvDHE2j9L0GPqrXM").read)

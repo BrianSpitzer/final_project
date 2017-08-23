@@ -30,19 +30,31 @@ class PairingsController < ApplicationController
 
   def create
     @pairing = Pairing.new
+    
+    first_id = params[:first_ingredient_id]
+    second_id = params[:second_ingredient_id]
 
-    @pairing.first_ingredient_id = params[:first_ingredient_id]
-    @pairing.second_ingredient_id = params[:second_ingredient_id]
+    return_to = first_id
+    
+    if first_id > second_id
+      third_id = first_id
+      first_id = second_id
+      second_id = third_id
+    end
+
+    @pairing.first_ingredient_id = first_id
+    @pairing.second_ingredient_id = second_id
     @pairing.pairing_strength = params[:pairing_strength]
-    @pairing.inverse = params[:inverse]
     @pairing.user_id = current_user.id
+
+
 
     save_status = @pairing.save
 
     if save_status == true
-      redirect_to("/pairings/#{@pairing.id}", :notice => "Pairing created successfully.")
+      redirect_to("/ingredients/#{return_to}", :notice => "Pairing created successfully.")
     else
-      render("pairings/new.html.erb")
+      redirect_to("/ingredients/#{return_to}")
     end
   end
 
