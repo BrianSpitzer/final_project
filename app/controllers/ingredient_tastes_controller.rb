@@ -26,7 +26,7 @@ class IngredientTastesController < ApplicationController
     save_status = @ingredient_taste.save
 
     if save_status == true
-      redirect_to("/ingredient_tastes/#{@ingredient_taste.id}", :notice => "Ingredient taste created successfully.")
+      redirect_to("/ingredients/#{@ingredient_taste.ingredient_id}/edit", :notice => "Ingredient taste created successfully.")
     else
       render("ingredient_tastes/new.html.erb")
     end
@@ -55,13 +55,15 @@ class IngredientTastesController < ApplicationController
 
   def destroy
     @ingredient_taste = IngredientTaste.find(params[:id])
+    
+    ingredient_id = @ingredient_taste.ingredient_id
 
     @ingredient_taste.destroy
 
     if URI(request.referer).path == "/ingredient_tastes/#{@ingredient_taste.id}"
       redirect_to("/", :notice => "Ingredient taste deleted.")
     else
-      redirect_to(:back, :notice => "Ingredient taste deleted.")
+      redirect_to("/ingredients/#{ingredient_id}/edit", :notice => "Ingredient taste deleted.")
     end
   end
 end

@@ -26,7 +26,7 @@ class IngredientTechniquesController < ApplicationController
     save_status = @ingredient_technique.save
 
     if save_status == true
-      redirect_to("/ingredient_techniques/#{@ingredient_technique.id}", :notice => "Ingredient technique created successfully.")
+      redirect_to("/ingredients/#{@ingredient_technique.ingredient_id}/edit", :notice => "Ingredient technique created successfully.")
     else
       render("ingredient_techniques/new.html.erb")
     end
@@ -55,13 +55,15 @@ class IngredientTechniquesController < ApplicationController
 
   def destroy
     @ingredient_technique = IngredientTechnique.find(params[:id])
+    
+    ingredient_id = @ingredient_technique.ingredient_id
 
     @ingredient_technique.destroy
 
     if URI(request.referer).path == "/ingredient_techniques/#{@ingredient_technique.id}"
       redirect_to("/", :notice => "Ingredient technique deleted.")
     else
-      redirect_to(:back, :notice => "Ingredient technique deleted.")
+      redirect_to("/ingredients/#{ingredient_id}/edit", :notice => "Ingredient technique deleted.")
     end
   end
 end

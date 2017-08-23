@@ -3,7 +3,7 @@ require 'unirest'
 
 class IngredientsController < ApplicationController
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.all.order(:name)
 
     render("ingredients/index.html.erb")
   end

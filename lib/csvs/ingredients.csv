@@ -1,25 +1,67 @@
-name,taste,weight,volume,season,function,form,techniques,user
-achiote seeds,,,,,,dry,1
-allspice,sweet,medium,loud,,,dry,1
-almonds,sweet,medium,quiet,,warming,dry,1
-anchiovies,salty,,loud,,,dry,1
-amaretto,,,,,,wet,1
-angelica,bitter,,loud,,,wet,1
-anise,,light-medium,,,warming,dry,1
-anise hyssop,sweet,light-medium,quiet-moderate,spring-summer,,dry,1
-star anise,sweet,medium,moderate-loud,,,dry,1
-apples,sweet,medium,quiet-moderate,autumn,cooling,dry,1
-apricots,sweet,medium,moderate-loud,summer,,dry,1
-artichokes,,medium,moderate-loud,spring-summer,,dry,1
-arugula,bitter,light-medium,moderate-loud,spring-summer,,dry,1
-asparagus,,light-medium,moderate,spring-summer,,dry,1
-avocados,,medium-heavy,quiet,spring-summer,,dry,1
-bacon,salty,medium,moderate,,,dry,1
-banana,sweet,medium,quiet,winter,,dry,1
-barley,sweet,,,,cooling,dry,1
-basil,sweet,light,mild-moderate,summer,,dry,1
-bass,,light,quiet,,,dry,1
-chicken,,medium,quiet,,heating,dry,1
-coffee,bitter,medium,moderate-loud,,,wet,1
-chocolate,bitter,,,,,dry,1
-eggs,sweet,light-medium,quiet,,heating,each,
+name,weight,volume,season,function,form,user
+achiote seeds,light,moderate,,,dry,1
+allspice,medium,loud,,,dry,2
+almonds,medium,quiet,,warming,dry,3
+anchiovies,light,loud,,,dry,1
+amaretto,light-medium,moderate-loud,,,wet,2
+angelica,light,loud,,,wet,3
+anise,light-medium,moderate,,warming,dry,1
+anise hyssop,light-medium,quiet-moderate,spring-summer,,dry,2
+star anise,medium,moderate-loud,,,dry,3
+apples,medium,quiet-moderate,autumn,cooling,dry,1
+apricots,medium,moderate-loud,summer,,dry,2
+artichokes,medium,moderate-loud,spring-summer,,dry,3
+arugula,light-medium,moderate-loud,spring-summer,,dry,1
+asparagus,light-medium,moderate,spring-summer,,dry,2
+avocados,medium-heavy,quiet,spring-summer,,dry,3
+bacon,medium,moderate,,,dry,1
+banana,medium,quiet,winter,,dry,2
+barley,light-medium,quiet-moderate,,cooling,dry,3
+bass,light,quiet,,,dry,1
+chicken,medium,quiet,,heating,dry,2
+coffee,medium,moderate-loud,,,wet,3
+chocolate,medium,moderate,,,dry,1
+eggs,light-medium,quiet,,heating,each,2
+beef,medium-heavy,moderate,,,dry,3
+chiles,light,loud,,warming,dry,1
+citrus,light-medium,loud,,warming,dry,2
+fish,light,quiet,,,dry,3
+duck,medium,quiet-moderate,,,dry,1
+quail,light-medium,quiet-moderate,,,dry,2
+garlic,light,moderate-loud,,warming,dry,3
+pork,medium,moderate,,,dry,1
+lobster,light-medium,quiet-moderate,,,dry,2
+shrimp,light,quiet-moderate,,,dry,3
+beans,medium-heavy,quiet,,,dry,1
+beets,light-medium,quiet-moderate,,,dry,2
+breads,medium,quiet-moderate,,,dry,3
+cabbage,light,quiet-moderate,,,dry,1
+cakes,medium-heavy,quiet-moderate,,,dry,2
+carrots,light-medium,quiet-moderate,,,dry,3
+chickpeas,light-medium,quiet,,,dry,1
+chile,light,moderate-loud,,warming,dry,2
+peppers,light,moderate-loud,,warming,dry,3
+cinnamon,light,loud,,warming,dry,1
+cloves,light,loud,,,dry,2
+cookies,light-medium,moderate,,,dry,3
+coriander,light,loud,,,dry,1
+currants,light,moderate,,,dry,2
+curry powder,light,loud,,warming,dry,3
+eggplant,medium,quiet,,,dry,1
+ginger,light,moderate-loud,,warming,dry,2
+goat,medium,moderate,,,dry,3
+grains,light-medium,quiet-moderate,,,dry,1
+ham,medium,moderate-loud,,,dry,2
+ketchup,light-medium,moderate,,,dry,3
+lamb,medium,moderate,,,dry,1
+mushrooms,medium,quiet-moderate,,,dry,2
+mustard,light,moderate-loud,,,dry,3
+nutmeg,light,loud,,,dry,1
+nuts,light-medium,quiet-moderate,,,dry,2
+onions,light,moderate-loud,,,each,3
+black pepper,light,loud,,,dry,1
+pineapple,light-medium,loud,,,dry,2
+pumpkin,medium,moderate,,,dry,3
+rabbit,medium-heavy,moderate,,,dry,1
+rice,medium,quiet,,,dry,2
+rosemary,light,loud,,,dry,3

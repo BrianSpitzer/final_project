@@ -1,29 +1,30 @@
 <div class="page-header">
   <h2>
     <%= @ingredient.name.titlecase %>
-
-    <% if current_user.favorite_ingredients.where(:ingredient_id => @ingredient.id).present? %>
-      <form action="/delete_favorite_ingredient/<%= current_user.favorite_ingredients.find_by(:ingredient_id => @ingredient.id).id %>">
-        <input type="hidden" name="back_to" value="ingredient">
-        <input type="hidden" name="key" value="<% @ingredient.id %>">
-        <button class="btn btn-link">
-          <i class="fa fa-heart"></i>
-        </button>
-        </a>
-      </form>
-    <% else %>
-      <form action="/create_favorite_ingredient" method="post">
-        <!-- Hidden input for authenticity token to protect from forgery -->
-        <input name="authenticity_token" type="hidden" value="w1iLjvXzqYtx/ZzTeVLpx2o5GmuxYRT5y80KYEt+d6yEfZSWhn3rBwIWG/08tJW1S1AgSrr4D37in+f/2tVoCQ==">
-        
-        <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
-        <input type="hidden" name="key" value="<% @ingredient.id %>">
-  
-        <button class="btn btn-link">
-          <i class="fa fa-heart-o"></i>
-        </button>
-      </form>
-    <% end %>
+    <span>
+      <% if current_user.favorite_ingredients.where(:ingredient_id => @ingredient.id).present? %>
+        <form action="/delete_favorite_ingredient/<%= current_user.favorite_ingredients.find_by(:ingredient_id => @ingredient.id).id %>">
+          <input type="hidden" name="back_to" value="ingredient">
+          <input type="hidden" name="key" value="<% @ingredient.id %>">
+          <button class="btn btn-link">
+            <i class="fa fa-heart"></i>
+          </button>
+          </a>
+        </form>
+      <% else %>
+        <form action="/create_favorite_ingredient" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="w1iLjvXzqYtx/ZzTeVLpx2o5GmuxYRT5y80KYEt+d6yEfZSWhn3rBwIWG/08tJW1S1AgSrr4D37in+f/2tVoCQ==">
+          
+          <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
+          <input type="hidden" name="key" value="<% @ingredient.id %>">
+    
+          <button class="btn btn-link">
+            <i class="fa fa-heart-o"></i>
+          </button>
+        </form>
+      <% end %>
+    </span>
   </h2>
 </div>
 
@@ -52,10 +53,10 @@
           <dd><%= @ingredient.form %></dd>
           
           <dt>Taste</dt>
-          <dd><%= @ingredient.tastes.map(&:name).join(", ") %></dd>
+          <dd><%= @ingredient.tastes.order(:name).map(&:name).join(", ") %></dd>
           
           <dt>Techniques</dt>
-          <dd><%= @ingredient.techniques.map(&:name).join(", ") %></dd>
+          <dd><%= @ingredient.techniques.order(:name).map(&:name).join(", ") %></dd>
     
         </dl>
       </div>

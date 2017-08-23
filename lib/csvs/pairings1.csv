@@ -1,51 +1,83 @@
 first,second,strength,user
 ACHIOTE SEEDS,beef,good,1
-ACHIOTE SEEDS,chicken,good,1
-ACHIOTE SEEDS,chiles,good,1
+ACHIOTE SEEDS,chicken,good,2
+ACHIOTE SEEDS,chiles,good,3
 ACHIOTE SEEDS,citrus,good,1
-ACHIOTE SEEDS,fish,good,1
-ACHIOTE SEEDS,duck,good,1
+ACHIOTE SEEDS,fish,good,2
+ACHIOTE SEEDS,duck,good,3
 ACHIOTE SEEDS,quail,good,1
-ACHIOTE SEEDS,garlic,good,1
-ACHIOTE SEEDS,pork,good,1
+ACHIOTE SEEDS,garlic,good,2
+ACHIOTE SEEDS,pork,good,3
 ACHIOTE SEEDS,lobster,good,1
-ACHIOTE SEEDS,shrimp,good,1
-ALLSPICE,apples,good,1
+ACHIOTE SEEDS,shrimp,good,2
+ALLSPICE,apples,good,3
 ALLSPICE,beans,good,1
-ALLSPICE,BEEF,good,1
-ALLSPICE,beets,good,1
+ALLSPICE,BEEF,good,2
+ALLSPICE,beets,good,3
 ALLSPICE,breads,good,1
-ALLSPICE,cabbage,good,1
-ALLSPICE,cakes,good,1
+ALLSPICE,cabbage,good,2
+ALLSPICE,cakes,good,3
 ALLSPICE,carrots,good,1
-ALLSPICE,chicken,good,1
-ALLSPICE,chickpeas,good
+ALLSPICE,chicken,good,2
+ALLSPICE,chickpeas,good,3
 ALLSPICE,chile,good,1
-ALLSPICE,peppers,good,1
-ALLSPICE,cinnamon,good,1
+ALLSPICE,peppers,good,2
+ALLSPICE,cinnamon,good,3
 ALLSPICE,cloves,good,1
-ALLSPICE,cookies,good,1
-ALLSPICE,coriander,good,1
+ALLSPICE,cookies,good,2
+ALLSPICE,coriander,good,3
 ALLSPICE,currants,good,1
-ALLSPICE,curry powder,good,1
-ALLSPICE,eggplant,good,1
+ALLSPICE,curry powder,good,2
+ALLSPICE,eggplant,good,3
 ALLSPICE,fish,good,1
-ALLSPICE,garlic,good,1
-ALLSPICE,ginger,good,1
+ALLSPICE,garlic,good,2
+ALLSPICE,ginger,good,3
 ALLSPICE,goat,good,1
-ALLSPICE,grains,good,1
-ALLSPICE,ham,good,1
+ALLSPICE,grains,good,2
+ALLSPICE,ham,good,3
 ALLSPICE,ketchup,good,1
-ALLSPICE,lamb,good,1
-ALLSPICE,mushrooms,good,1
+ALLSPICE,lamb,good,2
+ALLSPICE,mushrooms,good,3
 ALLSPICE,mustard,good,1
-ALLSPICE,nutmeg,good,1
-ALLSPICE,nuts,good,1
+ALLSPICE,nutmeg,good,2
+ALLSPICE,nuts,good,3
 ALLSPICE,onions,good,1
-ALLSPICE,pepper,good,1
-ALLSPICE,pineapple,good,1
-ALLSPICE,pork,good,1
+ALLSPICE,pineapple,good,2
+ALLSPICE,pork,good,3
 ALLSPICE,PUMPKIN,better,1
-ALLSPICE,rabbit,good,1
-ALLSPICE,rice,good,1
+ALLSPICE,rabbit,good,2
+ALLSPICE,rice,good,3
 ALLSPICE,rosemary,good,1
+almonds,amaretto,good,2
+almonds,anise,good,3
+almonds,apples,good,1
+almonds,apricots,good,2
+almonds,beans,good,3
+almonds,blackberries,good,1
+almonds,brandy,good,2
+almonds,BUTTER,better,3
+almonds,butterscotch,good,1
+almonds,caramel,good,2
+almonds,cardamom,good,3
+almonds,cayenne,good,1
+almonds,manchego,good,2
+almonds,ricotta,good,3
+almonds,cherries,good,1
+almonds,chicken,good,2
+almonds,chocolate,good,3
+almonds,white chocolate,good,1
+almonds,cinnamon,good,2
+almonds,coconut,good,3
+almonds,coffee,good,1
+almonds,cornmeal,good,2
+almonds,corn syrup,good,3
+almonds,crab,good,1
+almonds,cranberries,good,2
+almonds,CREAM,better,3
+almonds,cream,good,1
+almonds,cheese,good,2
+almonds,creme fraihe,good,3
+almonds,currants,good,1
+almonds,figs,good,2
+almonds,fish,good,3
+almonds,VANILLA,better,1

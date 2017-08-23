@@ -14,225 +14,270 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/update_ingredient/<%= @ingredient.id %>" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-    
-      <!-- Label and input for name -->
-      <div class = "row">
-        <div class="form-group">
-          <div class="col-md-2">
-            <label for="name" class="control-label">
-              Name
-            </label>
-          </div>
-          <div class="col-md-10">
-            <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @ingredient.name %>">
-          </div>
-        </div>
+    <div class="panel panel-primary">
+  
+      <div class="panel-heading">
+        <h4 class="panel-title">Properties</h4>    
       </div>
-
-      <!-- Label and input for weight -->
-      <div class = "row">
-        <div class="form-group">
-          <div class = "col-md-2">  
-            <label for="weight" class="control-label">
-              Weight
-            </label>
-          </div>
-          <div class = "col-md-10">
-            <%= select_tag(:weight, options_for_select([
-              ['light','light'], 
-              ['light-medium','light-medium'],
-              ['medium','medium'],
-              ['medium-heavy','medium-heavy'],
-              ['heavy','heavy'],
-              ], @ingredient.weight), :class => "form-control", :include_blank => true) %>        
-          </div>  
-        </div>
-      </div>
+  
+      <div class="panel-body">
+  
+        <form action="/update_ingredient/<%= @ingredient.id %>" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+        
+          <div class="col-md-6">
+            <!-- Label and input for name -->
+            <div class = "row">
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="name" class="control-label">
+                    Name
+                  </label>
+                </div>
+                <div class="col-md-10">
+                  <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @ingredient.name %>">
+                </div>
+              </div>
+            </div>
       
-      <!-- Label and input for volume -->
-      <div class="row">
-        <div class="form-group">
-          <div class="col-md-2">
-            <label for="volume" class="control-label">
-              Volume
-            </label>
+            <!-- Label and input for weight -->
+            <div class = "row">
+              <div class="form-group">
+                <div class = "col-md-2">  
+                  <label for="weight" class="control-label">
+                    Weight
+                  </label>
+                </div>
+                <div class="col-md-10">
+                  <%= select_tag(:weight, options_for_select([
+                    ['light','light'], 
+                    ['light-medium','light-medium'],
+                    ['medium','medium'],
+                    ['medium-heavy','medium-heavy'],
+                    ['heavy','heavy'],
+                    ], @ingredient.weight), :class => "form-control", :include_blank => true) %>        
+                </div>  
+              </div>
+            </div>
+            
+            <!-- Label and input for volume -->
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="volume" class="control-label">
+                    Volume
+                  </label>
+                </div>
+                
+                <div class="col-md-10">
+                  <%= select_tag(:volume, options_for_select([
+                    ['quiet','quiet'], 
+                    ['quiet-moderate','quiet-moderate'],
+                    ['moderate','moderate'],
+                    ['moderate-loud','moderate-loud'],
+                    ['loud','loud'],
+                    ['quiet-loud','quiet-loud'],
+                    ], @ingredient.volume), :class => "form-control", :include_blank => true) %>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div class="col-md-10">
-            <%= select_tag(:volume, options_for_select([
-              ['quiet','quiet'], 
-              ['quiet-moderate','quiet-moderate'],
-              ['moderate','moderate'],
-              ['moderate-loud','moderate-loud'],
-              ['loud','loud'],
-              ['quiet-loud','quiet-loud'],
-              ], @ingredient.volume), :class => "form-control", :include_blank => true) %>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Label and input for season -->
-      <div class="row">
-        <div class="form-group">
-          <div class="col-md-2">
-            <label for="season" class="control-label">
-              Season
-            </label>
+          <div class="col-md-6">
+            <!-- Label and input for season -->
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="season" class="control-label">
+                    Season
+                  </label>
+                </div>
+                
+                <div class="col-md-10">
+                   <%= select_tag(:season, options_for_select([
+                    ['winter','winter'], 
+                    ['winter-spring','winter-spring'],
+                    ['spring','spring'],
+                    ['spring-summer','spring-summer'],
+                    ['summer','summer'],
+                    ['summer-autumn','summer-autumn'],
+                    ['autumn','autumn'],
+                    ['autumn-winter','autumn-winter'],
+                    ['year round','year-round']
+                    ], @ingredient.season), :class => "form-control", :include_blank => true) %>    
+                </div>
+              </div>
+            </div>
+  
+            <!-- Label and input for function -->
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="function" class="control-label">
+                    Function
+                  </label>
+                </div>
+                
+                <div class="col-md-10">
+                   <%= select_tag(:function, options_for_select([
+                    ['cooling','cooling'], 
+                    ['warming','warming'],
+                    ['heating','heating']
+                    ], @ingredient.function), :class => "form-control", :include_blank => true) %>   
+                </div>
+              </div>
+            </div>
+            
+            <!-- Label and input for form -->
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="form" class="control-label">
+                    Form
+                  </label>
+                </div>
+                
+                <div class="col-md-10">
+                   <%= select_tag(:form, options_for_select([
+                    ['dry','dry'], 
+                    ['wet','wet'],
+                    ['each','each']
+                    ], @ingredient.form), :class => "form-control", :include_blank => true) %>   
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div class="col-md-10">
-             <%= select_tag(:season, options_for_select([
-              ['winter','winter'], 
-              ['winter-spring','winter-spring'],
-              ['spring','spring'],
-              ['spring-summer','spring-summer'],
-              ['summer','summer'],
-              ['summer-autumn','summer-autumn'],
-              ['autumn','autumn'],
-              ['autumn-winter','autumn-winter'],
-              ['year round','year-round']
-              ], @ingredient.season), :class => "form-control", :include_blank => true) %>    
+          <div class="row">
+            <div class="col-md-12 text-right">
+              <button class="btn btn-primary">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+              </button>
+              or
+              <a href="/ingredients/<%= @ingredient.id %>">Cancel</a>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
-      
-      <!-- Label and input for function -->
-      <div class="row">
-        <div class="form-group">
-          <div class="col-md-2">
-            <label for="function" class="control-label">
-              Function
-            </label>
-          </div>
-          
-          <div class="col-md-10">
-             <%= select_tag(:function, options_for_select([
-              ['cooling','cooling'], 
-              ['warming','warming'],
-              ['heating','heating']
-              ], @ingredient.function), :class => "form-control", :include_blank => true) %>   
-          </div>
-        </div>
-      </div>
-      
-      <!-- Label and input for form -->
-      <div class="row">
-        <div class="form-group">
-          <div class="col-md-2">
-            <label for="form" class="control-label">
-              Form
-            </label>
-          </div>
-          
-          <div class="col-md-10">
-             <%= select_tag(:form, options_for_select([
-              ['dry','dry'], 
-              ['wet','wet'],
-              ['each','each']
-              ], @ingredient.form), :class => "form-control", :include_blank => true) %>   
-          </div>
-        </div>
-      </div>
-
-      <button class="btn btn-warning">
-        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-      </button>
-      or
-      <a href="/ingredients/<%= @ingredient.id %>">Cancel</a>
-    </form>
+    </div>
   </div>
 </div>
 
-<div>
-  <div class="row">
-    <h3> Tastes </h3>
-      <ul>
-        <% @ingredient.tastes.each do |taste| %>
-          <li> <%= taste.name %> </li>
-        <% end %>
-      </ul>
-    </div>
-    
-    <h4> Add a new taste for <%= @ingredient.name %></h4>
-    <div class="row">
-      <div class="col-md-12">
-        <form action="/create_ingredient_taste" method="post">
-          <!-- Hidden input for authenticity token to protect from forgery -->
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-    
-          <!-- Hidden input for ingredient_id -->
-          <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
-    
-          <!-- Label and input for taste_id -->
+<div class="row"
+  <div class="col-md-12">
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">Tastes</h4>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <% @ingredient.ingredient_tastes.each do |ingredient_taste| %>
+              <li class="list-group-item">
+                <%= ingredient_taste.taste.name %>
+                <span class="pull-right">
+                  <a href="/delete_ingredient_taste/<%= ingredient_taste.id %>">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </a>
+                </span>
+              </li>
+            <% end %>
+          </ul>
+          
+          <h5> Add a new taste for <%= @ingredient.name %></h5>
           <div class="row">
-            <div class="form-group">
-              <div class="col-md-2">
-                <label for="taste_id" class="control-label">
-                  Taste
-                </label>
-              </div>
-              
-              <div class="col-md-10">
-                <%= select_tag(:taste_id, options_from_collection_for_select(Taste.all, :id, :name, @ingredient_taste.taste_id), :class => "form-control") %>
-              </div>
-              <a href="/taste/new">Add a new taste</a>
+            <div class="col-md-12">
+              <form action="/create_ingredient_taste" method="post">
+                <!-- Hidden input for authenticity token to protect from forgery -->
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          
+                <!-- Hidden input for ingredient_id -->
+                <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
+          
+                <!-- Label and input for taste_id -->
+                <div class="row">
+                  <div class="form-group">
+                    <div class="col-md-4">
+                      <label for="taste_id" class="control-label">
+                        Taste
+                      </label>
+                    </div>
+                    
+                    <div class="col-md-8">
+                      <%= select_tag(:taste_id, options_from_collection_for_select(Taste.all, :id, :name, @ingredient_taste.taste_id), :class => "form-control") %>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <button class="btn btn-success">
+                    Create Taste
+                  </button>
+                  or
+                  <a href="/ingredients">Cancel</a>
+                </div>
+              </form>
             </div>
           </div>
-          <button class="btn btn-success">
-            Create Taste
-          </button>
-          or
-          <a href="/ingredients">Cancel</a>
-        </form>
+        </div>
       </div>
     </div>
-  </div>  
-
-<div>
-  <div class="row">
-    <h3> Techniques </h3>
-      <ul>
-        <% @ingredient.techniques.each do |technique| %>
-          <li> <%= technique.name %> </li>
-        <% end %>
-      </ul>
-    </div>
-    
-    <h4> Add a new technique for <%= @ingredient.name %></h4>
-    <div class="row">
-      <div class="col-md-12">
-        <form action="/create_ingredient_technique" method="post">
-          <!-- Hidden input for authenticity token to protect from forgery -->
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-    
-          <!-- Hidden input for ingredient_id -->
-          <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
-    
-          <!-- Label and input for technique_id -->
+  
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">Techniques</h4>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <% @ingredient.ingredient_techniques.each do |ingredient_technique| %>
+              <li class="list-group-item">
+                <%= ingredient_technique.technique.name %>
+                <span class="pull-right">
+                  <a href="/delete_ingredient_technique/<%= ingredient_technique.id %>">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </a>
+                </span>
+              </li>
+            <% end %>
+          </ul>
+          
+          <h5> Add a new technique for <%= @ingredient.name %></h5>
           <div class="row">
-            <div class="form-group">
-              <div class="col-md-2">
-                <label for="technique_id" class="control-label">
-                  Technique
-                </label>
-              </div>
-              
-              <div class="col-md-10">    
-                <%= select_tag(:technique_id, options_from_collection_for_select(Technique.all, :id, :name, @ingredient_technique.technique_id), :class => "form-control") %>
-              </div>
-              <a href="/technique/new">Add a new technique</a>
+            <div class="col-md-12">
+              <form action="/create_ingredient_technique" method="post">
+                <!-- Hidden input for authenticity token to protect from forgery -->
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          
+                <!-- Hidden input for ingredient_id -->
+                <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
+          
+                <!-- Label and input for taste_id -->
+                <div class="row">
+                  <div class="form-group">
+                    <div class="col-md-4">
+                      <label for="technique_id" class="control-label">
+                        Technique
+                      </label>
+                    </div>
+                    
+                    <div class="col-md-8">
+                      <%= select_tag(:technique_id, options_from_collection_for_select(Technique.all, :id, :name, @ingredient_technique.technique_id), :class => "form-control") %>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <button class="btn btn-success">
+                    Create Technique
+                  </button>
+                  or
+                  <a href="/ingredients">Cancel</a>
+                </div>
+              </form>
             </div>
           </div>
-          <button class="btn btn-success">
-            Create Taste
-          </button>
-          or
-          <a href="/ingredients">Cancel</a>
-        </form>
+        </div>
       </div>
     </div>
-  </div>  
+  </div>
 </div>
